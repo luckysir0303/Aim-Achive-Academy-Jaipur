@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIM ACHIVE ACADEMY JAIPUR</title>
+    <title>AIM ARCHIVE ACADEMY JAIPUR</title>
     <!-- PWA Manifest Link -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1e3a8a">
@@ -50,6 +50,7 @@
         .content-section { display: none; }
         .content-section.active { display: block; }
         
+        /* Modal & Auth Tabs Fix */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 99999; justify-content: center; align-items: center; padding: 15px; overflow-y: auto; }
         .modal-content { background: var(--card-bg); color: var(--text-color); padding: 22px; border-radius: 12px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; z-index: 100000; }
         
@@ -83,30 +84,16 @@
         </div>
     </div>
 
-    <!-- Payment & Coupon Modal -->
-    <div id="payment-modal" class="modal">
-        <div class="modal-content" style="max-width: 450px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
-                <h3 style="color: var(--primary-blue); font-size: 16px;">Complete Purchase</h3>
-                <span onclick="closePaymentModal()" style="font-size: 24px; font-weight: bold; cursor: pointer; color: #dc2626;">&times;</span>
-            </div>
-            <div id="payment-modal-body"></div>
-        </div>
-    </div>
-
     <div id="website-main-wrapper" style="filter: blur(5px); pointer-events: none; user-select: none;">
         <header>
             <div class="logo-box">
-                <img src="logo.png" alt="Logo" style="height: 35px; vertical-align: middle; display: inline-block;" onerror="this.style.display='none'">
-                <div style="display: inline-block; vertical-align: middle; margin-left: 5px;">
-                    <h1 style="font-size: 15px; display:inline;">AIM ACHIVE ACADEMY</h1>
-                    <span style="display: block;">JAIPUR • SUCCESS PATH</span>
-                </div>
+                <h1>AIM ARCHIVE ACADEMY</h1>
+                <span>JAIPUR • SUCCESS PATH</span>
             </div>
         </header>
 
         <div class="welcome-banner">
-            <h2>WELCOME TO AIM ACHIVE ACADEMY JAIPUR</h2>
+            <h2>WELCOME TO AIM ARCHIVE ACADEMY JAIPUR</h2>
             <p>Your Ultimate Success Path for Competitive Exams</p>
         </div>
 
@@ -125,7 +112,7 @@
                 </div>
 
                 <div class="card" style="margin-bottom: 15px;">
-                    <h3>Aim ACHIVE Academy Jaipur</h3>
+                    <h3>Aim Archive Academy Jaipur</h3>
                     <p>Explore our free & paid courses, test series, and video lectures.</p>
                     <button class="btn btn-green" onclick="switchTab('courses')">Explore Courses</button>
                 </div>
@@ -252,7 +239,6 @@
         const COURSES_API_URL = "https://script.google.com/macros/s/AKfycbx8lMS_KZgcfwsbpHwj0TiV8eRIGU0fx0gu6pGBH_ZB0cMchhe2qstWTuJzMurZsSw2/exec";
         const CLASSES_API_URL = "https://script.google.com/macros/s/AKfycbwpx35EmzcAS8X1Y8eABouWak4XCGuuCXjtrCQ0y55x045wUHXfLqULaHiTFPEFPvZi1g/exec";
         const STUDENT_API_URL = "https://script.google.com/macros/s/AKfycbyLSVobp5cfG3-0vpVA-1dOF8Wt42t2ew46iPzGbTzV9qtXzKZu8vJGY6XDRZkXYPBh/exec";
-        const COUPONS_API_URL = "https://script.google.com/macros/s/AKfycbzjohYk47iEo1IJPusNLeelE3fvaEMwYysdvDw3g60pr5Um5XKRDMStL_KZIZOBlIl48Q/exec";
 
         let generatedOTP = "";
         let currentUser = JSON.parse(localStorage.getItem('aaa_current_user')) || null;
@@ -337,7 +323,7 @@
                                     `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', 'true')">📖 Start Learning (Free)</button>` :
                                     (unlocked ? 
                                         `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', 'false')">📖 Access Classes (Unlocked)</button>` :
-                                        `<button class="btn btn-yellow" onclick="openPaymentModal('${courseId}', '${courseTitle}', '${coursePrice}', '${payLink}')">🔒 Buy Course / Apply Coupon</button>`
+                                        `<button class="btn btn-yellow" onclick="buyOrRequestCourse('${courseTitle}', '${coursePrice}', '${payLink}')">🔒 Buy Course / Pay</button>`
                                     )
                                 }
                             </div>
@@ -364,89 +350,10 @@
                 .catch(err => { grid.innerHTML = "<p style='color:red; text-align:center;'>Failed to load courses.</p>"; });
         }
 
-        function openPaymentModal(courseId, courseTitle, priceStr, defaultPayLink) {
-            let numericPrice = parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 0;
-            const modalBody = document.getElementById('payment-modal-body');
-            
-            modalBody.innerHTML = `
-                <div style="font-size: 13px; margin-bottom: 12px;">
-                    <b>Course:</b> ${courseTitle}<br>
-                    <b>Original Price:</b> ₹<span id="base-price">${numericPrice}</span>
-                </div>
-                <div class="form-group">
-                    <label>Have a Coupon Code?</label>
-                    <div style="display: flex; gap: 8px;">
-                        <input type="text" id="modal-coupon-input" placeholder="Enter Coupon Code" style="text-transform: uppercase;">
-                        <button class="btn btn-green" style="width: auto; margin-top: 0; padding: 0 14px;" onclick="applyCourseCoupon('${courseId}', ${numericPrice})">Apply</button>
-                    </div>
-                    <p id="modal-coupon-msg" style="font-size: 12px; margin-top: 5px;"></p>
-                </div>
-                <div style="background: var(--bg-color); padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 14px;">
-                    <b>Discount:</b> -₹<span id="modal-discount-amt">0</span><br>
-                    <b>Final Payable:</b> ₹<span id="modal-final-price" style="color: #059669; font-weight: bold; font-size: 16px;">${numericPrice}</span>
-                </div>
-                <button class="btn btn-yellow" onclick="proceedToPay('${courseTitle}', '${defaultPayLink}')">Proceed to Payment / WhatsApp</button>
-            `;
-            document.getElementById('payment-modal').style.display = 'flex';
-        }
-
-        function closePaymentModal() {
-            document.getElementById('payment-modal').style.display = 'none';
-        }
-
-        async function applyCourseCoupon(courseId, origPrice) {
-            let userCode = document.getElementById('modal-coupon-input').value.trim().toUpperCase();
-            let msgElement = document.getElementById('modal-coupon-msg');
-
-            if(!userCode) {
-                msgElement.style.color = "red";
-                msgElement.innerText = "Kripya coupon code darj karein.";
-                return;
+        function buyOrRequestCourse(title, price, payLink) {
+            if (confirm(`Aap "${title}" course (${price}) khareedna chahte hain. WhatsApp par payment ka screenshot bhejein.`)) {
+                window.open(payLink, '_blank');
             }
-
-            msgElement.style.color = "#64748b";
-            msgElement.innerText = "Checking coupon...";
-
-            try {
-                let response = await fetch(COUPONS_API_URL);
-                let data = await response.json();
-                
-                let matchedCoupon = data.find(item => String(item.CouponCode || "").trim().toUpperCase() === userCode);
-
-                if(matchedCoupon) {
-                    let allowedCourse = String(matchedCoupon.ApplicableCourseId || matchedCoupon.ApplicableCourseID || "").trim();
-                    
-                    if(allowedCourse.toUpperCase() !== "ALL" && allowedCourse !== String(courseId)) {
-                        msgElement.style.color = "red";
-                        msgElement.innerText = "Yeh coupon is course ke liye valid nahi hai.";
-                        return;
-                    }
-
-                    let discountPercent = parseFloat(matchedCoupon.DiscountPercent) || 0;
-                    let discountAmount = (origPrice * discountPercent) / 100;
-                    let finalPrice = origPrice - discountAmount;
-
-                    document.getElementById('modal-discount-amt').innerText = discountAmount.toFixed(0);
-                    document.getElementById('modal-final-price').innerText = finalPrice.toFixed(0);
-
-                    msgElement.style.color = "green";
-                    msgElement.innerText = `✔ ${discountPercent}% discount successfully applied!`;
-                } else {
-                    msgElement.style.color = "red";
-                    msgElement.innerText = "Galat ya expired coupon code.";
-                }
-            } catch (error) {
-                console.error("Coupon error:", error);
-                msgElement.style.color = "red";
-                msgElement.innerText = "Coupon check karne me samasya aayi. Dubara koshish karein.";
-            }
-        }
-
-        function proceedToPay(courseTitle, defaultPayLink) {
-            let finalPrice = document.getElementById('modal-final-price').innerText;
-            let finalLink = `${defaultPayLink}%20(Final%20Price:%20₹${finalPrice})`;
-            window.open(finalLink, '_blank');
-            closePaymentModal();
         }
 
         function openCourseSubjects(courseId, courseTitle, isFree) {
