@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="hi" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIM ARCHIVE ACADEMY JAIPUR</title>
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e3a8a">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() { emailjs.init("swL8BQU4TkalaXqXo"); })();
+    </script>
+    <style>
+        :root { --bg-color: #f4f6f9; --text-color: #333; --card-bg: #ffffff; --nav-bg: #1e3a8a; --border-color: #e2e8f0; --primary-blue: #2563eb; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 70px; }
+        header { background: var(--nav-bg); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo-box h1 { font-size: 16px; font-weight: bold; }
+        .logo-box span { font-size: 10px; color: #fde047; }
+        .welcome-banner { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; text-align: center; padding: 22px 15px; margin: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2); }
+        .welcome-banner h2 { font-size: 20px; font-weight: 900; color: #fde047; margin-bottom: 5px; }
+        .container { padding: 0 15px 15px 15px; max-width: 1200px; margin: auto; }
+        .section-title { margin: 15px 0; font-size: 18px; font-weight: bold; color: var(--primary-blue); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .card { background: var(--card-bg); border-radius: 10px; padding: 15px; border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .card h3 { color: var(--primary-blue); margin-bottom: 6px; font-size: 16px; }
+        .card p { font-size: 12px; margin-bottom: 8px; opacity: 0.9; }
+        .course-price { font-size: 14px; font-weight: bold; color: #059669; background: #ecfdf5; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+        .course-price.free { color: #2563eb; background: #eff6ff; }
+        .btn { background: var(--primary-blue); color: white; padding: 9px 12px; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: block; font-weight: bold; font-size: 12px; width: 100%; text-align: center; margin-top: 8px; transition: 0.2s; }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-green { background: #059669; }
+        .btn-red { background: #dc2626; color: white; }
+        .btn-yellow { background: #d97706; color: white; }
+        
+        /* STYLISH SOCIAL MEDIA GRID DESIGN */
+        .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
+        .social-card { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 13px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .social-card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+        .social-card span { font-size: 22px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.2); width: 38px; height: 38px; border-radius: 50%; }
+        
+        .sc-whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); grid-column: span 2; }
+        .sc-youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .sc-instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+        .sc-doubt { background: linear-gradient(135deg, #059669, #047857); grid-column: span 2; }
+        .sc-email { background: linear-gradient(135deg, #2563eb, #1e40af); }
+        .sc-call { background: linear-gradient(135deg, #d97706, #b45309); }
+
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+        .modal-content { background: var(--card-bg); color: var(--text-color); padding: 20px; border-radius: 12px; width: 100%; max-width: 550px; max-height: 90vh; overflow-y: auto; }
+        .form-group { margin-bottom: 12px; text-align: left; }
+        .form-group label { display: block; font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+        .form-group input { width: 100%; padding: 9px; border: 1px solid var(--border-color); background: var(--bg-color); border-radius: 5px; font-size: 13px; }
+        .auth-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+        .auth-tab-btn { flex: 1; padding: 6px; background: var(--bg-color); border: 1px solid var(--border-color); cursor: pointer; font-weight: bold; border-radius: 5px; font-size: 11px; text-align: center; }
+        .auth-tab-btn.active { background: var(--primary-blue); color: white; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-bg); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1001; }
+        .bottom-nav-item { text-align: center; color: var(--text-color); text-decoration: none; font-size: 11px; font-weight: 600; cursor: pointer; }
+        .bottom-nav-item span { display: block; font-size: 18px; }
+        #website-main-wrapper { transition: filter 0.3s ease; }
+    </style>
+</head>
+<body>
+
+    <!-- CLASSES MODAL -->
+    <div id="classes-modal" class="modal">
+        <div class="modal-content" style="max-width: 650px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                <h3 id="classes-modal-title" style="color: var(--primary-blue); font-size: 16px;">Course Content</h3>
+                <span onclick="closeClassesModal()" style="font-size: 22px; font-weight: bold; cursor: pointer; color: #dc2626;">&times;</span>
+            </div>
+            <div id="classes-modal-body"></div>
+        </div>
+    </div>
+
+    <div id="website-main-wrapper" style="filter: blur(5px); pointer-events: none; user-select: none;">
+        <header>
+            <div class="logo-box">
+                <h1>AIM ARCHIVE ACADEMY</h1>
+                <span>JAIPUR • SUCCESS PATH</span>
+            </div>
+        </header>
+
+        <div class="welcome-banner">
+            <h2>WELCOME TO AIM ARCHIVE ACADEMY JAIPUR</h2>
+            <p>Your Ultimate Success Path for Competitive Exams</p>
+        </div>
+
+        <div class="container">
+            <!-- HOME SECTION -->
+            <div id="section-home" class="content-section active">
+                <div class="section-title">Welcome Dashboard</div>
+                
+                <!-- INSTALL APP BANNER -->
+                <div id="install-banner" class="card" style="display: none; background: linear-gradient(135deg, #fef3c7, #fde68a); border: 1px solid #f59e0b; margin-bottom: 15px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <h3 style="color: #b45309; margin-bottom: 2px;">📲 Install App</h3>
+                            <p style="font-size: 11px; color: #92400e; margin-bottom: 0;">Get quick access on your mobile home screen!</p>
+                        </div>
+                        <button id="install-btn" class="btn btn-yellow" style="width: auto; padding: 6px 14px; margin-top: 0;">Install App</button>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-bottom: 15px;">
+                    <h3>Aim Archive Academy Jaipur</h3>
+                    <p>Explore our free & paid courses, test series, and video lectures.</p>
+                    <button class="btn btn-green" onclick="switchTab('courses')">Explore Courses</button>
+                </div>
+
+                <!-- STYLISH SOCIAL MEDIA & CONTACT SECTION -->
+                <div class="card">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 5px;">🌐 Connect & Support Hub</h3>
+                    <p style="font-size: 12px; color: #666; margin-bottom: 12px;">जुड़ें हमारे साथ हमारे सोशल मीडिया प्लेटफॉर्म्स पर:</p>
+                    
+                    <div class="social-grid">
+                        <!-- WhatsApp Chat -->
+                        <a href="https://wa.me/917357040303" target="_blank" class="social-card sc-whatsapp">
+                            <span>💬</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">Direct Chat</div>
+                                <div>7357040303</div>
+                            </div>
+                        </a>
+
+                        <!-- WhatsApp Doubt Group -->
+                        <a href="https://chat.whatsapp.com/JxQbQOZLcl1GRmPfRZrunS" target="_blank" class="social-card sc-doubt">
+                            <span>👥</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">WhatsApp Community</div>
+                                <div>Doubt Discussion Group</div>
+                            </div>
+                        </a>
+
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@Lucky_Sir_Jaipur" target="_blank" class="social-card sc-youtube">
+                            <span>▶</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">YouTube</div>
+                                <div>Lucky Sir Jaipur</div>
+                            </div>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/luckysir0303?igsh=OG16eXVoeDd1M2Ft" target="_blank" class="social-card sc-instagram">
+                            <span>📸</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">Instagram</div>
+                                <div>@luckysir0303</div>
+                            </div>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:luckysir0303@gmail.com" class="social-card sc-email">
+                            <span>✉</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">Email Us</div>
+                                <div>Mail Support</div>
+                            </div>
+                        </a>
+
+                        <!-- Call -->
+                        <a href="tel:7357040303" class="social-card sc-call">
+                            <span>📞</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">Helpline</div>
+                                <div>Call Now</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COURSES SECTION -->
+            <div id="section-courses" class="content-section">
+                <div class="section-title">Available Courses</div>
+                <div class="grid" id="courses-grid"><p style="text-align:center; grid-column: 1/-1;">Loading courses...</p></div>
+            </div>
+
+            <!-- MY COURSES SECTION -->
+            <div id="section-mycourses" class="content-section">
+                <div class="section-title">My Enrolled Courses</div>
+                <div class="grid" id="my-courses-grid"><p style="text-align:center; grid-column: 1/-1;">No courses enrolled yet.</p></div>
+            </div>
+
+            <!-- PROFILE SECTION -->
+            <div id="section-profile" class="content-section">
+                <div class="card">
+                    <h3 style="margin-bottom: 10px; color: var(--primary-blue);">👤 Student Profile</h3>
+                    <div id="profile-details" style="font-size: 13px; line-height: 1.6; margin-bottom: 15px;"></div>
+                    <button class="btn btn-red" onclick="logoutUser()">🚪 Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="bottom-nav-item" onclick="switchTab('home')"><span>🏠</span>Home</div>
+        <div class="bottom-nav-item" onclick="switchTab('courses')"><span>📚</span>Courses</div>
+        <div class="bottom-nav-item" onclick="switchTab('mycourses')"><span>🎓</span>My Batches</div>
+        <div class="bottom-nav-item" onclick="switchTab('profile')"><span>👤</span>Profile</div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="modal" style="display: flex;">
+        <div class="modal-content">
+            <h3 style="color: var(--primary-blue); margin-bottom: 12px; text-align: center;">🔐 Student Portal Access</h3>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab-btn" id="tab-signup-btn" onclick="switchAuthTab('signup')">New Student (Sign Up)</button>
+            </div>
+            <div id="auth-login-section">
+                <div class="form-group"><label>Mobile Number</label><input type="text" id="login-mobile" placeholder="Mobile" maxlength="10"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="login-password" placeholder="Password"></div>
+                <button class="btn btn-green" onclick="loginUser()">Login</button>
+            </div>
+            <div id="auth-signup-section" style="display: none;">
+                <div id="signup-step-form">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="signup-name" placeholder="Name"></div>
+                    <div class="form-group"><label>Mobile Number</label><input type="text" id="signup-mobile" placeholder="Mobile" maxlength="10"></div>
+                    <div class="form-group"><label>Email Address</label><input type="email" id="signup-email" placeholder="Email"></div>
+                    <button class="btn btn-green" onclick="sendSignupOTP()">Send Email OTP</button>
+                </div>
+                <div id="signup-step-verify" style="display: none;">
+                    <p style="font-size: 11px; margin-bottom: 8px; color: #059669;">OTP sent to email!</p>
+                    <div class="form-group"><label>Enter 6-Digit OTP</label><input type="text" id="signup-otp-input" placeholder="OTP" maxlength="6"></div>
+                    <div class="form-group"><label>Set Password</label><input type="password" id="signup-password" placeholder="Password"></div>
+                    <button class="btn btn-green" onclick="verifyOTPAndRegister()">Verify & Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SERVICE_ID = "service_wwy125i";
+        const TEMPLATE_ID = "template_v2itk2s";
+        const COURSES_API_URL = "https://script.google.com/macros/s/AKfycbx8lMS_KZgcfwsbpHwj0TiV8eRIGU0fx0gu6pGBH_ZB0cMchhe2qstWTuJzMurZsSw2/exec";
+        const CLASSES_API_URL = "https://script.google.com/macros/s/AKfycbwpx35EmzcAS8X1Y8eABouWak4XCGuuCXjtrCQ0y55x045wUHXfLqULaHiTFPEFPvZi1g/exec";
+        const STUDENT_API_URL = "https://script.google.com/macros/s/AKfycbyLSVobp5cfG3-0vpVA-1dOF8Wt42t2ew46iPzGbTzV9qtXzKZu8vJGY6XDRZkXYPBh/exec";
+
+        let generatedOTP = "";
+        let currentUser = JSON.parse(localStorage.getItem('aaa_current_user')) || null;
+        let globalCoursesData = [];
+        let globalClassesData = [];
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('install-banner').style.display = 'block';
+        });
+
+        document.getElementById('install-btn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    document.getElementById('install-banner').style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        window.onload = function() {
+            checkLoginState();
+            loadCoursesFromSheet();
+        };
+
+        function checkLoginState() {
+            if (currentUser) {
+                document.getElementById('website-main-wrapper').style.filter = 'none';
+                document.getElementById('website-main-wrapper').style.pointerEvents = 'auto';
+                document.getElementById('website-main-wrapper').style.userSelect = 'auto';
+                document.getElementById('auth-modal').style.display = 'none';
+            } else {
+                document.getElementById('auth-modal').style.display = 'flex';
+            }
+        }
+
+        function isCourseFree(priceStr) {
+            if (!priceStr) return true;
+            let p = priceStr.toString().toLowerCase().trim();
+            return p === 'free' || p === '0' || p === 'rs 0' || p === '₹0' || p === '';
+        }
+
+        function isCoursePurchased(courseId, priceStr) {
+            if (isCourseFree(priceStr)) return true;
+            if (!currentUser) return false;
+            let purchasedList = JSON.parse(localStorage.getItem('aaa_purchased_' + currentUser.mobile)) || [];
+            return purchasedList.includes(String(courseId));
+        }
+
+        function loadCoursesFromSheet() {
+            const grid = document.getElementById('courses-grid');
+            const myGrid = document.getElementById('my-courses-grid');
+
+            fetch(COURSES_API_URL)
+                .then(res => res.json())
+                .then(data => {
+                    globalCoursesData = Array.isArray(data) ? data : (data.courses || []);
+                    let htmlContent = "", myHtmlContent = "", hasPurchasedAny = false;
+
+                    globalCoursesData.forEach(c => {
+                        let courseId = c.courseid || c.CourseID || c.id || "";
+                        let courseTitle = c.title || c.CourseName || "Course";
+                        let courseDesc = c.desc || c.Description || "";
+                        let coursePrice = c.price ? c.price : "Free";
+                        let isFree = isCourseFree(coursePrice);
+                        let payLink = c.paylink || `https://wa.me/917357040303?text=Sir%20I%20want%20to%20buy%20` + encodeURIComponent(courseTitle);
+                        
+                        let unlocked = isCoursePurchased(courseId, coursePrice);
+
+                        htmlContent += `
+                            <div class="card">
+                                <div>
+                                    <h3>${courseTitle}</h3>
+                                    <p>${courseDesc}</p>
+                                    <div class="course-price ${isFree ? 'free' : ''}">🏷️ ${isFree ? 'Free (निशुल्क)' : coursePrice}</div>
+                                </div>
+                                ${isFree ? 
+                                    `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', 'true')">📖 Start Learning (Free)</button>` :
+                                    (unlocked ? 
+                                        `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', 'false')">📖 Access Classes (Unlocked)</button>` :
+                                        `<button class="btn btn-yellow" onclick="buyOrRequestCourse('${courseTitle}', '${coursePrice}', '${payLink}')">🔒 Buy Course / Pay</button>`
+                                    )
+                                }
+                            </div>
+                        `;
+
+                        if (isFree || unlocked) {
+                            hasPurchasedAny = true;
+                            myHtmlContent += `
+                                <div class="card">
+                                    <div>
+                                        <h3>${courseTitle}</h3>
+                                        <p>${courseDesc}</p>
+                                        <span style="color:#059669; font-weight:bold; font-size:12px;">✔ ${isFree ? 'Free Enrolled' : 'Active Batch'}</span>
+                                    </div>
+                                    <button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', '${isFree}')">Start Learning</button>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    grid.innerHTML = htmlContent;
+                    myGrid.innerHTML = hasPurchasedAny ? myHtmlContent : "<p style='text-align:center; grid-column: 1/-1;'>No enrolled courses yet.</p>";
+                })
+                .catch(err => { grid.innerHTML = "<p style='color:red; text-align:center;'>Failed to load courses.</p>"; });
+        }
+
+        function buyOrRequestCourse(title, price, payLink) {
+            if (confirm(`आप "${title}" कोर्स (${price}) खरीदना चाहते हैं। WhatsApp पर पेमेंट का स्क्रीनशॉट भेजें।`)) {
+                window.open(payLink, '_blank');
+            }
+        }
+
+        function openCourseSubjects(courseId, courseTitle, isFree) {
+            document.getElementById('classes-modal-title').innerText = courseTitle + " - Subjects";
+            const body = document.getElementById('classes-modal-body');
+            body.innerHTML = "<p style='text-align:center; padding: 20px;'>Loading subjects...</p>";
+            document.getElementById('classes-modal').style.display = 'flex';
+
+            fetch(CLASSES_API_URL)
+                .then(res => res.json())
+                .then(data => {
+                    globalClassesData = Array.isArray(data) ? data : (data.classes || []);
+                    let filtered = globalClassesData.filter(cls => String(cls.courseid || cls.CourseID || "").trim().toLowerCase() === String(courseId).trim().toLowerCase());
+
+                    if(filtered.length === 0) {
+                        body.innerHTML = "<p style='text-align:center; padding: 20px;'>No subjects available yet.</p>";
+                        return;
+                    }
+
+                    let subjectsSet = new Set();
+                    filtered.forEach(cls => { if(cls.subject || cls.Subject) subjectsSet.add(cls.subject || cls.Subject); });
+
+                    let listHtml = "<div style='display: flex; flex-direction: column; gap: 10px;'>";
+                    subjectsSet.forEach(sub => {
+                        listHtml += `
+                            <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;" onclick="openChapters('${courseId}', '${courseTitle}', '${sub}')">
+                                <h4 style="font-size: 15px; color: var(--primary-blue);">📚 ${sub}</h4>
+                                <button class="btn btn-green" style="width: auto; padding: 6px 14px;">View Chapters</button>
+                            </div>
+                        `;
+                    });
+                    listHtml += "</div>";
+                    body.innerHTML = listHtml;
+                })
+                .catch(err => { body.innerHTML = "<p style='color:red; text-align:center;'>Failed to load classes.</p>"; });
+        }
+
+        function openChapters(courseId, courseTitle, subjectName) {
+            document.getElementById('classes-modal-title').innerText = `${subjectName} - Chapters`;
+            const body = document.getElementById('classes-modal-body');
+            let filtered = globalClassesData.filter(cls => String(cls.courseid || cls.CourseID || "").trim().toLowerCase() === String(courseId).trim().toLowerCase() && (cls.subject || cls.Subject).trim() === subjectName.trim());
+
+            let chaptersSet = new Set();
+            filtered.forEach(cls => { if(cls.chapter || cls.Chapter) chaptersSet.add(cls.chapter || cls.Chapter); });
+
+            let listHtml = `<button class="btn" style="width: auto; margin-bottom: 12px; background: #64748b;" onclick="openCourseSubjects('${courseId}', '${courseTitle}')">⬅ Back</button>`;
+            listHtml += "<div style='display: flex; flex-direction: column; gap: 10px;'>";
+            chaptersSet.forEach(chp => {
+                listHtml += `
+                    <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;" onclick="openLectures('${courseId}', '${courseTitle}', '${subjectName}', '${chp}')">
+                        <h4 style="font-size: 14px;">📖 ${chp}</h4>
+                        <button class="btn btn-green" style="width: auto; padding: 6px 14px;">View Lectures</button>
+                    </div>
+                `;
+            });
+            listHtml += "</div>";
+            body.innerHTML = listHtml;
+        }
+
+        function openLectures(courseId, courseTitle, subjectName, chapterName) {
+            document.getElementById('classes-modal-title').innerText = `${chapterName} - Lectures`;
+            const body = document.getElementById('classes-modal-body');
+            let filtered = globalClassesData.filter(cls => String(cls.courseid || cls.CourseID || "").trim().toLowerCase() === String(courseId).trim().toLowerCase() && (cls.subject || cls.Subject).trim() === subjectName.trim() && (cls.chapter || cls.Chapter).trim() === chapterName.trim());
+
+            let listHtml = `<button class="btn" style="width: auto; margin-bottom: 12px; background: #64748b;" onclick="openChapters('${courseId}', '${courseTitle}', '${subjectName}')">⬅ Back</button>`;
+            listHtml += "<div style='display: flex; flex-direction: column; gap: 10px;'>";
+            filtered.forEach(cls => {
+                let title = cls.title || cls.ClassName || "Lecture";
+                let videoUrl = cls.url || cls.VideoUrl || "";
+                listHtml += `
+                    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="font-size: 14px;">▶ ${title}</h4>
+                        <button class="btn btn-green" style="width: auto; padding: 6px 12px;" onclick="playClassVideo('${title}', '${videoUrl}', '${courseId}', '${courseTitle}', '${subjectName}', '${chapterName}')">Play Video</button>
+                    </div>
+                `;
+            });
+            listHtml += "</div>";
+            body.innerHTML = listHtml;
+        }
+
+        function playClassVideo(classTitle, videoUrl, courseId, courseTitle, subjectName, chapterName) {
+            const body = document.getElementById('classes-modal-body');
+            document.getElementById('classes-modal-title').innerText = classTitle;
+            let embedHtml = `<button class="btn" style="width: auto; margin-bottom: 12px; background: #64748b;" onclick="openLectures('${courseId}', '${courseTitle}', '${subjectName}', '${chapterName}')">⬅ Back</button>`;
+            
+            if(videoUrl && (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be"))) {
+                let videoId = videoUrl.includes("embed/") ? videoUrl.split("embed/")[1].split("?")[0] : (videoUrl.includes("watch?v=") ? videoUrl.split("watch?v=")[1].split("&")[0] : videoUrl.split("youtu.be/")[1].split("?")[0]);
+                embedHtml += `<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" style="position: absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius: 8px;" allowfullscreen></iframe></div>`;
+            } else {
+                embedHtml += `<p>Video not available.</p>`;
+            }
+            body.innerHTML = embedHtml;
+        }
+
+        function closeClassesModal() { document.getElementById('classes-modal').style.display = 'none'; }
+        function switchTab(tabName) {
+            ['home', 'courses', 'mycourses', 'profile'].forEach(t => document.getElementById('section-' + t).classList.remove('active'));
+            document.getElementById('section-' + tabName).classList.add('active');
+            if(tabName === 'profile') {
+                document.getElementById('profile-details').innerHTML = `<b>Name:</b> ${currentUser.name}<br><b>Mobile:</b> ${currentUser.mobile}<br><b>Email:</b> ${currentUser.email}`;
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function logoutUser() { localStorage.removeItem('aaa_current_user'); location.reload(); }
+        function switchAuthTab(type) {
+            document.getElementById('tab-login-btn').classList.toggle('active', type === 'login');
+            document.getElementById('tab-signup-btn').classList.toggle('active', type === 'signup');
+            document.getElementById('auth-login-section').style.display = type === 'login' ? 'block' : 'none';
+            document.getElementById('auth-signup-section').style.display = type === 'signup' ? 'block' : 'none';
+        }
+        function sendSignupOTP() {
+            const name = document.getElementById('signup-name').value.trim();
+            const mobile = document.getElementById('signup-mobile').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            if(!name || mobile.length !== 10 || !email) { alert('सही जानकारी भरें!'); return; }
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, { to_email: email, to_name: name, otp_code: generatedOTP }).then(() => {
+                document.getElementById('signup-step-form').style.display = 'none';
+                document.getElementById('signup-step-verify').style.display = 'block';
+            });
+        }
+        function verifyOTPAndRegister() {
+            if(document.getElementById('signup-otp-input').value.trim() !== generatedOTP) { alert('गलत OTP!'); return; }
+            const newUser = {
+                name: document.getElementById('signup-name').value.trim(),
+                mobile: document.getElementById('signup-mobile').value.trim(),
+                email: document.getElementById('signup-email').value.trim(),
+                password: document.getElementById('signup-password').value.trim()
+            };
+            localStorage.setItem('aaa_registered_user', JSON.stringify(newUser));
+            localStorage.setItem('aaa_current_user', JSON.stringify(newUser));
+            currentUser = newUser;
+            
+            if(STUDENT_API_URL) {
+                fetch(STUDENT_API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newUser)
+                }).catch(err => console.log(err));
+            }
+            alert('रजिस्ट्रेशन सफल रहा!');
+            checkLoginState();
+            loadCoursesFromSheet();
+        }
+        function loginUser() {
+            const mobile = document.getElementById('login-mobile').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            const regUser = JSON.parse(localStorage.getItem('aaa_registered_user'));
+            if(!regUser || regUser.mobile !== mobile || regUser.password !== password) { alert('गलत मोबाइल नंबर या पासवर्ड!'); return; }
+            localStorage.setItem('aaa_current_user', JSON.stringify(regUser));
+            currentUser = regUser;
+            checkLoginState();
+            loadCoursesFromSheet();
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="hi" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIM ARCHIVE ACADEMY JAIPUR</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() { emailjs.init("swL8BQU4TkalaXqXo"); })();
+    </script>
+    <style>
+        :root { --bg-color: #f4f6f9; --text-color: #333; --card-bg: #ffffff; --nav-bg: #1e3a8a; --border-color: #e2e8f0; --primary-blue: #2563eb; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 70px; }
+        header { background: var(--nav-bg); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo-box h1 { font-size: 16px; font-weight: bold; }
+        .logo-box span { font-size: 10px; color: #fde047; }
+        .welcome-banner { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; text-align: center; padding: 22px 15px; margin: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2); }
+        .welcome-banner h2 { font-size: 20px; font-weight: 900; color: #fde047; margin-bottom: 5px; }
+        .container { padding: 0 15px 15px 15px; max-width: 1200px; margin: auto; }
+        .section-title { margin: 15px 0; font-size: 18px; font-weight: bold; color: var(--primary-blue); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .card { background: var(--card-bg); border-radius: 10px; padding: 15px; border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .card h3 { color: var(--primary-blue); margin-bottom: 6px; font-size: 16px; }
+        .card p { font-size: 12px; margin-bottom: 8px; opacity: 0.9; }
+        .course-price { font-size: 14px; font-weight: bold; color: #059669; background: #ecfdf5; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+        .course-price.free { color: #2563eb; background: #eff6ff; }
+        .btn { background: var(--primary-blue); color: white; padding: 9px 12px; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: block; font-weight: bold; font-size: 12px; width: 100%; text-align: center; margin-top: 8px; transition: 0.2s; }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-green { background: #059669; }
+        .btn-red { background: #dc2626; color: white; }
+        .btn-yellow { background: #d97706; color: white; }
+        
+        /* STYLISH SOCIAL MEDIA GRID DESIGN */
+        .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
+        .social-card { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 13px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .social-card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+        .social-card span { font-size: 22px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.2); width: 38px; height: 38px; border-radius: 50%; }
+        
+        .sc-whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); grid-column: span 2; }
+        .sc-youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .sc-instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+        .sc-doubt { background: linear-gradient(135deg, #059669, #047857); grid-column: span 2; }
+        .sc-email { background: linear-gradient(135deg, #2563eb, #1e40af); }
+        .sc-call { background: linear-gradient(135deg, #d97706, #b45309); }
+
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+        .modal-content { background: var(--card-bg); color: var(--text-color); padding: 20px; border-radius: 12px; width: 100%; max-width: 550px; max-height: 90vh; overflow-y: auto; }
+        .form-group { margin-bottom: 12px; text-align: left; }
+        .form-group label { display: block; font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+        .form-group input { width: 100%; padding: 9px; border: 1px solid var(--border-color); background: var(--bg-color); border-radius: 5px; font-size: 13px; }
+        .auth-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+        .auth-tab-btn { flex: 1; padding: 6px; background: var(--bg-color); border: 1px solid var(--border-color); cursor: pointer; font-weight: bold; border-radius: 5px; font-size: 11px; text-align: center; }
+        .auth-tab-btn.active { background: var(--primary-blue); color: white; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-bg); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1001; }
+        .bottom-nav-item { text-align: center; color: var(--text-color); text-decoration: none; font-size: 11px; font-weight: 600; cursor: pointer; }
+        .bottom-nav-item span { display: block; font-size: 18px; }
+        #website-main-wrapper { transition: filter 0.3s ease; }
+    </style>
+</head>
+<body>
+
+    <!-- CLASSES MODAL -->
+    <div id="classes-modal" class="modal">
+        <div class="modal-content" style="max-width: 650px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                <h3 id="classes-modal-title" style="color: var(--primary-blue); font-size: 16px;">Course Content</h3>
+                <span onclick="closeClassesModal()" style="font-size: 22px; font-weight: bold; cursor: pointer; color: #dc2626;">&times;</span>
+            </div>
+            <div id="classes-modal-body"></div>
+        </div>
+    </div>
+
+    <div id="website-main-wrapper" style="filter: blur(5px); pointer-events: none; user-select: none;">
+        <header>
+            <div class="logo-box">
+                <h1>AIM ARCHIVE ACADEMY</h1>
+                <span>JAIPUR • SUCCESS PATH</span>
+            </div>
+        </header>
+
+        <div class="welcome-banner">
+            <h2>WELCOME TO AIM ARCHIVE ACADEMY JAIPUR</h2>
+            <p>Your Ultimate Success Path for Competitive Exams</p>
+        </div>
+
+        <div class="container">
+            <!-- HOME SECTION -->
+            <div id="section-home" class="content-section active">
+                <div class="section-title">Welcome Dashboard</div>
+                
+                <div class="card" style="margin-bottom: 15px;">
+                    <h3>Aim Archive Academy Jaipur</h3>
+                    <p>Explore our free & paid courses, test series, and video lectures.</p>
+                    <button class="btn btn-green" onclick="switchTab('courses')">Explore Courses</button>
+                </div>
+
+                <!-- STYLISH SOCIAL MEDIA & CONTACT SECTION -->
+                <div class="card">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 5px;">🌐 Connect & Support Hub</h3>
+                    <p style="font-size: 12px; color: #666; margin-bottom: 12px;">जुड़ें हमारे साथ हमारे सोशल मीडिया प्लेटफॉर्म्स पर:</p>
+                    
+                    <div class="social-grid">
+                        <!-- WhatsApp Chat -->
+                        <a href="https://wa.me/917357040303" target="_blank" class="social-card sc-whatsapp">
+                            <span>💬</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">Direct Chat</div>
+                                <div>7357040303</div>
+                            </div>
+                        </a>
+
+                        <!-- WhatsApp Doubt Group -->
+                        <a href="https://chat.whatsapp.com/JxQbQOZLcl1GRmPfRZrunS" target="_blank" class="social-card sc-doubt">
+                            <span>👥</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">WhatsApp Community</div>
+                                <div>Doubt Discussion Group</div>
+                            </div>
+                        </a>
+
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@Lucky_Sir_Jaipur" target="_blank" class="social-card sc-youtube">
+                            <span>▶</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">YouTube</div>
+                                <div>Lucky Sir Jaipur</div>
+                            </div>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/luckysir0303?igsh=OG16eXVoeDd1M2Ft" target="_blank" class="social-card sc-instagram">
+                            <span>📸</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">Instagram</div>
+                                <div>@luckysir0303</div>
+                            </div>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:luckysir0303@gmail.com" class="social-card sc-email">
+                            <span>✉</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">Email Us</div>
+                                <div>Mail Support</div>
+                            </div>
+                        </a>
+
+                        <!-- Call -->
+                        <a href="tel:7357040303" class="social-card sc-call">
+                            <span>📞</span>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.9;">Helpline</div>
+                                <div>Call Now</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COURSES SECTION -->
+            <div id="section-courses" class="content-section">
+                <div class="section-title">Available Courses</div>
+                <div class="grid" id="courses-grid"><p style="text-align:center; grid-column: 1/-1;">Loading courses...</p></div>
+            </div>
+
+            <!-- MY COURSES SECTION -->
+            <div id="section-mycourses" class="content-section">
+                <div class="section-title">My Enrolled Courses</div>
+                <div class="grid" id="my-courses-grid"><p style="text-align:center; grid-column: 1/-1;">No courses enrolled yet.</p></div>
+            </div>
+
+            <!-- PROFILE SECTION -->
+            <div id="section-profile" class="content-section">
+                <div class="card">
+                    <h3 style="margin-bottom: 10px; color: var(--primary-blue);">👤 Student Profile</h3>
+                    <div id="profile-details" style="font-size: 13px; line-height: 1.6; margin-bottom: 15px;"></div>
+                    <button class="btn btn-red" onclick="logoutUser()">🚪 Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="bottom-nav-item" onclick="switchTab('home')"><span>🏠</span>Home</div>
+        <div class="bottom-nav-item" onclick="switchTab('courses')"><span>📚</span>Courses</div>
+        <div class="bottom-nav-item" onclick="switchTab('mycourses')"><span>🎓</span>My Batches</div>
+        <div class="bottom-nav-item" onclick="switchTab('profile')"><span>👤</span>Profile</div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="modal" style="display: flex;">
+        <div class="modal-content">
+            <h3 style="color: var(--primary-blue); margin-bottom: 12px; text-align: center;">🔐 Student Portal Access</h3>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab-btn" id="tab-signup-btn" onclick="switchAuthTab('signup')">New Student (Sign Up)</button>
+            </div>
+            <div id="auth-login-section">
+                <div class="form-group"><label>Mobile Number</label><input type="text" id="login-mobile" placeholder="Mobile" maxlength="10"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="login-password" placeholder="Password"></div>
+                <button class="btn btn-green" onclick="loginUser()">Login</button>
+            </div>
+            <div id="auth-signup-section" style="display: none;">
+                <div id="signup-step-form">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="signup-name" placeholder="Name"></div>
+                    <div class="form-group"><label>Mobile Number</label><input type="text" id="signup-mobile" placeholder="Mobile" maxlength="10"></div>
+                    <div class="form-group"><label>Email Address</label><input type="email" id="signup-email" placeholder="Email"></div>
+                    <button class="btn btn-green" onclick="sendSignupOTP()">Send Email OTP</button>
+                </div>
+                <div id="signup-step-verify" style="display: none;">
+                    <p style="font-size: 11px; margin-bottom: 8px; color: #059669;">OTP sent to email!</p>
+                    <div class="form-group"><label>Enter 6-Digit OTP</label><input type="text" id="signup-otp-input" placeholder="OTP" maxlength="6"></div>
+                    <div class="form-group"><label>Set Password</label><input type="password" id="signup-password" placeholder="Password"></div>
+                    <button class="btn btn-green" onclick="verifyOTPAndRegister()">Verify & Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SERVICE_ID = "service_wwy125i";
+        const TEMPLATE_ID = "template_v2itk2s";
+        const COURSES_API_URL = "https://script.google.com/macros/s/AKfycbx8lMS_KZgcfwsbpHwj0TiV8eRIGU0fx0gu6pGBH_ZB0cMchhe2qstWTuJzMurZsSw2/exec";
+        const CLASSES_API_URL = "https://script.google.com/macros/s/AKfycbwpx35EmzcAS8X1Y8eABouWak4XCGuuCXjtrCQ0y55x045wUHXfLqULaHiTFPEFPvZi1g/exec";
+        const STUDENT_API_URL = "https://script.google.com/macros/s/AKfycbyLSVobp5cfG3-0vpVA-1dOF8Wt42t2ew46iPzGbTzV9qtXzKZu8vJGY6XDRZkXYPBh/exec";
+
+        let generatedOTP = "";
+        let currentUser = JSON.parse(localStorage.getItem('aaa_current_user')) || null;
+        let globalCoursesData = [];
+        let globalClassesData = [];
+
+        window.onload = function() {
+            checkLoginState();
+            loadCoursesFromSheet();
+        };
+
+        function checkLoginState() {
+            if (currentUser) {
+                document.getElementById('website-main-wrapper').style.filter = 'none';
+                document.getElementById('website-main-wrapper').style.pointerEvents = 'auto';
+                document.getElementById('website-main-wrapper').style.userSelect = 'auto';
+                document.getElementById('auth-modal').style.display = 'none';
+            } else {
+                document.getElementById('auth-modal').style.display = 'flex';
+            }
+        }
+
+        function isCourseFree(priceStr) {
+            if (!priceStr) return true;
+            let p = priceStr.toString().toLowerCase().trim();
+            return p === 'free' || p === '0' || p === 'rs 0' || p === '₹0' || p === '';
+        }
+
+        function isCoursePurchased(courseId, priceStr) {
+            if (isCourseFree(priceStr)) return true;
+            if (!currentUser) return false;
+            let purchasedList = JSON.parse(localStorage.getItem('aaa_purchased_' + currentUser.mobile)) || [];
+            return purchasedList.includes(String(courseId));
+        }
+
+        function loadCoursesFromSheet() {
+            const grid = document.getElementById('courses-grid');
+            const myGrid = document.getElementById('my-courses-grid');
+
+            fetch(COURSES_API_URL)
+                .then(res => res.json())
+                .then(data => {
+                    globalCoursesData = Array.isArray(data) ? data : (data.courses || []);
+                    let htmlContent = "", myHtmlContent = "", hasPurchasedAny = false;
+
+                    globalCoursesData.forEach(c => {
+                        let courseId = c.courseid || c.CourseID || c.id || "";
+                        let courseTitle = c.title || c.CourseName || "Course";
+                        let courseDesc = c.desc || c.Description || "";
+                        let coursePrice = c.price ? c.price : "Free";
+                        let isFree = isCourseFree(coursePrice);
+                        let payLink = c.paylink || `https://wa.me/917357040303?text=Sir%20I%20want%20to%20buy%20` + encodeURIComponent(courseTitle);
+                        
+                        let unlocked = isCoursePurchased(courseId, coursePrice);
+
+                        htmlContent += `
+                            <div class="card">
+                                <div>
+                                    <h3>${courseTitle}</h3>
+                                    <p>${courseDesc}</p>
+                                    <div class="course-price ${isFree ? 'free' : ''}">🏷️ ${isFree ? 'Free (निशुल्क)' : coursePrice}</div>
+                                </div>
+                                ${isFree ? 
+                                    `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', 'true')">📖 Start Learning (Free)</button>` :
+                                    (unlocked ? 
+                                        `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', 'false')">📖 Access Classes (Unlocked)</button>` :
+                                        `<button class="btn btn-yellow" onclick="buyOrRequestCourse('${courseTitle}', '${coursePrice}', '${payLink}')">🔒 Buy Course / Pay</button>`
+                                    )
+                                }
+                            </div>
+                        `;
+
+                        if (isFree || unlocked) {
+                            hasPurchasedAny = true;
+                            myHtmlContent += `
+                                <div class="card">
+                                    <div>
+                                        <h3>${courseTitle}</h3>
+                                        <p>${courseDesc}</p>
+                                        <span style="color:#059669; font-weight:bold; font-size:12px;">✔ ${isFree ? 'Free Enrolled' : 'Active Batch'}</span>
+                                    </div>
+                                    <button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', '${isFree}')">Start Learning</button>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    grid.innerHTML = htmlContent;
+                    myGrid.innerHTML = hasPurchasedAny ? myHtmlContent : "<p style='text-align:center; grid-column: 1/-1;'>No enrolled courses yet.</p>";
+                })
+                .catch(err => { grid.innerHTML = "<p style='color:red; text-align:center;'>Failed to load courses.</p>"; });
+        }
+
+        function buyOrRequestCourse(title, price, payLink) {
+            if (confirm(`आप "${title}" कोर्स (${price}) खरीदना चाहते हैं। WhatsApp पर पेमेंट का स्क्रीनशॉट भेजें।`)) {
+                window.open(payLink, '_blank');
+            }
+        }
+
+        function openCourseSubjects(courseId, courseTitle, isFree) {
+            document.getElementById('classes-modal-title').innerText = courseTitle + " - Subjects";
+            const body = document.getElementById('classes-modal-body');
+            body.innerHTML = "<p style='text-align:center; padding: 20px;'>Loading subjects...</p>";
+            document.getElementById('classes-modal').style.display = 'flex';
+
+            fetch(CLASSES_API_URL)
+                .then(res => res.json())
+                .then(data => {
+                    globalClassesData = Array.isArray(data) ? data : (data.classes || []);
+                    let filtered = globalClassesData.filter(cls => String(cls.courseid || cls.CourseID || "").trim().toLowerCase() === String(courseId).trim().toLowerCase());
+
+                    if(filtered.length === 0) {
+                        body.innerHTML = "<p style='text-align:center; padding: 20px;'>No subjects available yet.</p>";
+                        return;
+                    }
+
+                    let subjectsSet = new Set();
+                    filtered.forEach(cls => { if(cls.subject || cls.Subject) subjectsSet.add(cls.subject || cls.Subject); });
+
+                    let listHtml = "<div style='display: flex; flex-direction: column; gap: 10px;'>";
+                    subjectsSet.forEach(sub => {
+                        listHtml += `
+                            <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;" onclick="openChapters('${courseId}', '${courseTitle}', '${sub}')">
+                                <h4 style="font-size: 15px; color: var(--primary-blue);">📚 ${sub}</h4>
+                                <button class="btn btn-green" style="width: auto; padding: 6px 14px;">View Chapters</button>
+                            </div>
+                        `;
+                    });
+                    listHtml += "</div>";
+                    body.innerHTML = listHtml;
+                })
+                .catch(err => { body.innerHTML = "<p style='color:red; text-align:center;'>Failed to load classes.</p>"; });
+        }
+
+        function openChapters(courseId, courseTitle, subjectName) {
+            document.getElementById('classes-modal-title').innerText = `${subjectName} - Chapters`;
+            const body = document.getElementById('classes-modal-body');
+            let filtered = globalClassesData.filter(cls => String(cls.courseid || cls.CourseID || "").trim().toLowerCase() === String(courseId).trim().toLowerCase() && (cls.subject || cls.Subject).trim() === subjectName.trim());
+
+            let chaptersSet = new Set();
+            filtered.forEach(cls => { if(cls.chapter || cls.Chapter) chaptersSet.add(cls.chapter || cls.Chapter); });
+
+            let listHtml = `<button class="btn" style="width: auto; margin-bottom: 12px; background: #64748b;" onclick="openCourseSubjects('${courseId}', '${courseTitle}')">⬅ Back</button>`;
+            listHtml += "<div style='display: flex; flex-direction: column; gap: 10px;'>";
+            chaptersSet.forEach(chp => {
+                listHtml += `
+                    <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;" onclick="openLectures('${courseId}', '${courseTitle}', '${subjectName}', '${chp}')">
+                        <h4 style="font-size: 14px;">📖 ${chp}</h4>
+                        <button class="btn btn-green" style="width: auto; padding: 6px 14px;">View Lectures</button>
+                    </div>
+                `;
+            });
+            listHtml += "</div>";
+            body.innerHTML = listHtml;
+        }
+
+        function openLectures(courseId, courseTitle, subjectName, chapterName) {
+            document.getElementById('classes-modal-title').innerText = `${chapterName} - Lectures`;
+            const body = document.getElementById('classes-modal-body');
+            let filtered = globalClassesData.filter(cls => String(cls.courseid || cls.CourseID || "").trim().toLowerCase() === String(courseId).trim().toLowerCase() && (cls.subject || cls.Subject).trim() === subjectName.trim() && (cls.chapter || cls.Chapter).trim() === chapterName.trim());
+
+            let listHtml = `<button class="btn" style="width: auto; margin-bottom: 12px; background: #64748b;" onclick="openChapters('${courseId}', '${courseTitle}', '${subjectName}')">⬅ Back</button>`;
+            listHtml += "<div style='display: flex; flex-direction: column; gap: 10px;'>";
+            filtered.forEach(cls => {
+                let title = cls.title || cls.ClassName || "Lecture";
+                let videoUrl = cls.url || cls.VideoUrl || "";
+                listHtml += `
+                    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="font-size: 14px;">▶ ${title}</h4>
+                        <button class="btn btn-green" style="width: auto; padding: 6px 12px;" onclick="playClassVideo('${title}', '${videoUrl}', '${courseId}', '${courseTitle}', '${subjectName}', '${chapterName}')">Play Video</button>
+                    </div>
+                `;
+            });
+            listHtml += "</div>";
+            body.innerHTML = listHtml;
+        }
+
+        function playClassVideo(classTitle, videoUrl, courseId, courseTitle, subjectName, chapterName) {
+            const body = document.getElementById('classes-modal-body');
+            document.getElementById('classes-modal-title').innerText = classTitle;
+            let embedHtml = `<button class="btn" style="width: auto; margin-bottom: 12px; background: #64748b;" onclick="openLectures('${courseId}', '${courseTitle}', '${subjectName}', '${chapterName}')">⬅ Back</button>`;
+            
+            if(videoUrl && (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be"))) {
+                let videoId = videoUrl.includes("embed/") ? videoUrl.split("embed/")[1].split("?")[0] : (videoUrl.includes("watch?v=") ? videoUrl.split("watch?v=")[1].split("&")[0] : videoUrl.split("youtu.be/")[1].split("?")[0]);
+                embedHtml += `<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" style="position: absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius: 8px;" allowfullscreen></iframe></div>`;
+            } else {
+                embedHtml += `<p>Video not available.</p>`;
+            }
+            body.innerHTML = embedHtml;
+        }
+
+        function closeClassesModal() { document.getElementById('classes-modal').style.display = 'none'; }
+        function switchTab(tabName) {
+            ['home', 'courses', 'mycourses', 'profile'].forEach(t => document.getElementById('section-' + t).classList.remove('active'));
+            document.getElementById('section-' + tabName).classList.add('active');
+            if(tabName === 'profile') {
+                document.getElementById('profile-details').innerHTML = `<b>Name:</b> ${currentUser.name}<br><b>Mobile:</b> ${currentUser.mobile}<br><b>Email:</b> ${currentUser.email}`;
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function logoutUser() { localStorage.removeItem('aaa_current_user'); location.reload(); }
+        function switchAuthTab(type) {
+            document.getElementById('tab-login-btn').classList.toggle('active', type === 'login');
+            document.getElementById('tab-signup-btn').classList.toggle('active', type === 'signup');
+            document.getElementById('auth-login-section').style.display = type === 'login' ? 'block' : 'none';
+            document.getElementById('auth-signup-section').style.display = type === 'signup' ? 'block' : 'none';
+        }
+        function sendSignupOTP() {
+            const name = document.getElementById('signup-name').value.trim();
+            const mobile = document.getElementById('signup-mobile').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            if(!name || mobile.length !== 10 || !email) { alert('सही जानकारी भरें!'); return; }
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, { to_email: email, to_name: name, otp_code: generatedOTP }).then(() => {
+                document.getElementById('signup-step-form').style.display = 'none';
+                document.getElementById('signup-step-verify').style.display = 'block';
+            });
+        }
+        function verifyOTPAndRegister() {
+            if(document.getElementById('signup-otp-input').value.trim() !== generatedOTP) { alert('गलत OTP!'); return; }
+            const newUser = {
+                name: document.getElementById('signup-name').value.trim(),
+                mobile: document.getElementById('signup-mobile').value.trim(),
+                email: document.getElementById('signup-email').value.trim(),
+                password: document.getElementById('signup-password').value.trim()
+            };
+            localStorage.setItem('aaa_registered_user', JSON.stringify(newUser));
+            localStorage.setItem('aaa_current_user', JSON.stringify(newUser));
+            currentUser = newUser;
+            
+            if(STUDENT_API_URL) {
+                fetch(STUDENT_API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newUser)
+                }).catch(err => console.log(err));
+            }
+            alert('रजिस्ट्रेशन सफल रहा!');
+            checkLoginState();
+            loadCoursesFromSheet();
+        }
+        function loginUser() {
+            const mobile = document.getElementById('login-mobile').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            const regUser = JSON.parse(localStorage.getItem('aaa_registered_user'));
+            if(!regUser || regUser.mobile !== mobile || regUser.password !== password) { alert('गलत मोबाइल नंबर या पासवर्ड!'); return; }
+            localStorage.setItem('aaa_current_user', JSON.stringify(regUser));
+            currentUser = regUser;
+            checkLoginState();
+            loadCoursesFromSheet();
+        }
+    </script>
+</body>
+</html>
