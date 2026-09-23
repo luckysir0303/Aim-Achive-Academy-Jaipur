@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIM ACHIEVE ACADEMY JAIPUR</title>
-    <!-- PWA Manifest Link -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1e3a8a">
     
-    <!-- Home Screen Icon ke liye Apple & Android touch icon -->
     <link rel="apple-touch-icon" href="lucky-sir.jpg">
     <link rel="icon" type="image/jpeg" href="lucky-sir.jpg">
     
@@ -21,138 +19,62 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 70px; }
         
-        /* --- 5 SECONDS SPLASH SCREEN ANIMATION STYLING --- */
+        /* SPLASH SCREEN */
         #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a0a0a;
-            z-index: 999999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; z-index: 999999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
             animation: fadeOutSplash 0.8s ease 4.2s forwards;
         }
-
         .fire-bg {
-            position: absolute;
-            width: 300px;
-            height: 300px;
+            position: absolute; width: 300px; height: 300px;
             background: radial-gradient(circle, rgba(255,69,0,0.8) 0%, rgba(255,140,0,0.4) 40%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            animation: firePulse 1.5s infinite alternate;
-            z-index: 1;
+            border-radius: 50%; animation: firePulse 1.5s infinite alternate; z-index: 1;
         }
-
         @keyframes firePulse {
             0% { transform: scale(1); opacity: 0.8; filter: blur(10px); }
             100% { transform: scale(1.3); opacity: 1; filter: blur(20px); }
         }
-
         .splash-logo-container {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            animation: dropAndImpact 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
-            opacity: 0;
-            transform: translateY(-400px) scale(0.5);
+            position: relative; z-index: 2; text-align: center;
+            animation: dropAndImpact 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards; opacity: 0; transform: translateY(-400px) scale(0.5);
         }
-
         @keyframes dropAndImpact {
             0% { transform: translateY(-400px) scale(0.5); opacity: 0; }
             70% { transform: translateY(20px) scale(1.1); opacity: 1; }
             85% { transform: translateY(-10px) scale(0.95); opacity: 1; }
             100% { transform: translateY(0) scale(1); opacity: 1; }
         }
-
         .splash-avatar {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            border: 4px solid #ff4500;
-            object-fit: cover;
-            box-shadow: 0 0 25px #ff4500, inset 0 0 15px #ff8c00;
-            background: #fff;
+            width: 110px; height: 110px; border-radius: 50%; border: 4px solid #ff4500; object-fit: cover;
+            box-shadow: 0 0 25px #ff4500, inset 0 0 15px #ff8c00; background: #fff;
         }
-
-        .splash-title {
-            color: #fff;
-            font-size: 26px;
-            font-weight: 900;
-            margin-top: 15px;
-            text-shadow: 0 0 10px #ff4500, 0 0 20px #ff0000;
-            letter-spacing: 1px;
-        }
-
-        .splash-subtitle {
-            color: #fde047;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 5px;
-            text-transform: uppercase;
-        }
-
+        .splash-title { color: #fff; font-size: 26px; font-weight: 900; margin-top: 15px; text-shadow: 0 0 10px #ff4500; }
+        .splash-subtitle { color: #fde047; font-size: 16px; font-weight: bold; margin-top: 5px; text-transform: uppercase; }
         .dust-cloud {
-            position: absolute;
-            bottom: 35%;
-            width: 150px;
-            height: 20px;
-            background: rgba(200, 200, 200, 0.5);
-            border-radius: 50%;
-            filter: blur(8px);
-            opacity: 0;
-            z-index: 2;
-            animation: dustBurst 0.6s ease 1.6s forwards;
+            position: absolute; bottom: 35%; width: 150px; height: 20px; background: rgba(200, 200, 200, 0.5);
+            border-radius: 50%; filter: blur(8px); opacity: 0; z-index: 2; animation: dustBurst 0.6s ease 1.6s forwards;
         }
-
         @keyframes dustBurst {
             0% { transform: scale(0.2); opacity: 0; }
             50% { transform: scale(2.5); opacity: 0.8; }
             100% { transform: scale(4); opacity: 0; }
         }
-
         @keyframes fadeOutSplash {
             0% { opacity: 1; visibility: visible; }
             100% { opacity: 0; visibility: hidden; }
         }
-        /* --- END OF SPLASH SCREEN --- */
 
         header { background: var(--nav-bg); color: white; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         .header-brand { display: flex; align-items: center; gap: 12px; }
-        
         .header-avatar-container {
-            position: relative;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #fde047, #f59e0b);
-            padding: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulseGlow 2s infinite;
+            position: relative; width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, #fde047, #f59e0b); padding: 2px; display: flex; align-items: center; justify-content: center;
         }
-        .header-avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #fff;
-        }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(253, 224, 71, 0.6); }
-            70% { box-shadow: 0 0 0 10px rgba(253, 224, 71, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(253, 224, 71, 0); }
-        }
-
-        .logo-box h1 { font-size: 15px; font-weight: 900; letter-spacing: 0.5px; }
+        .header-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #fff; }
+        .logo-box h1 { font-size: 15px; font-weight: 900; }
         .logo-box span { font-size: 10px; color: #fde047; font-weight: 600; }
 
-        .welcome-banner { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; text-align: center; padding: 22px 15px; margin: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2); }
+        .welcome-banner { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; text-align: center; padding: 22px 15px; margin: 15px; border-radius: 12px; }
         .welcome-banner h2 { font-size: 20px; font-weight: 900; color: #fde047; margin-bottom: 5px; }
         .container { padding: 0 15px 15px 15px; max-width: 1200px; margin: auto; }
         .section-title { margin: 15px 0; font-size: 18px; font-weight: bold; color: var(--primary-blue); }
@@ -163,16 +85,13 @@
         .course-price { font-size: 14px; font-weight: bold; color: #059669; background: #ecfdf5; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
         .course-price.free { color: #2563eb; background: #eff6ff; }
         .btn { background: var(--primary-blue); color: white; padding: 10px 12px; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: block; font-weight: bold; font-size: 13px; width: 100%; text-align: center; margin-top: 10px; transition: 0.2s; }
-        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn:hover { opacity: 0.9; }
         .btn-green { background: #059669; }
         .btn-red { background: #dc2626; color: white; }
         .btn-yellow { background: #d97706; color: white; }
         
         .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
-        .social-card { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 13px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .social-card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
-        .social-card span { font-size: 22px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.2); width: 38px; height: 38px; border-radius: 50%; }
-        
+        .social-card { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 13px; }
         .sc-whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); grid-column: span 2; }
         .sc-youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
         .sc-instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
@@ -192,8 +111,8 @@
         .form-group input:focus { border-color: var(--primary-blue); background: #fff; }
         
         .auth-tabs { display: flex; gap: 8px; margin-bottom: 18px; background: var(--bg-color); padding: 4px; border-radius: 8px; border: 1px solid var(--border-color); }
-        .auth-tab-btn { flex: 1; padding: 10px; background: transparent; border: none; cursor: pointer; font-weight: bold; border-radius: 6px; font-size: 12px; text-align: center; color: #64748b; transition: 0.2s; }
-        .auth-tab-btn.active { background: var(--primary-blue); color: white; box-shadow: 0 2px 5px rgba(37,99,235,0.3); }
+        .auth-tab-btn { flex: 1; padding: 10px; background: transparent; border: none; cursor: pointer; font-weight: bold; border-radius: 6px; font-size: 12px; text-align: center; color: #64748b; }
+        .auth-tab-btn.active { background: var(--primary-blue); color: white; }
         
         .auth-pane { display: none; width: 100%; }
         .auth-pane.active { display: block !important; }
@@ -201,17 +120,16 @@
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-bg); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1001; }
         .bottom-nav-item { text-align: center; color: var(--text-color); text-decoration: none; font-size: 11px; font-weight: 600; cursor: pointer; }
         .bottom-nav-item span { display: block; font-size: 18px; }
+        
         #website-main-wrapper { transition: filter 0.3s ease; }
     </style>
 </head>
 <body>
 
-    <!-- 🔥 5 SECONDS SPLASH SCREEN -->
     <div id="splash-screen">
         <div class="fire-bg"></div>
         <div class="dust-cloud"></div>
         <div class="splash-logo-container">
-            <!-- GitHub par uploaded photo ka naam yahan likha hai -->
             <img src="lucky-sir.jpg" alt="Lucky Sir Jaipur" class="splash-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/4140/4140048.png'">
             <div class="splash-title">AIM ACHIEVE ACADEMY</div>
             <div class="splash-subtitle">LUCKY SIR JAIPUR</div>
@@ -232,7 +150,6 @@
         <header>
             <div class="header-brand">
                 <div class="header-avatar-container">
-                    <!-- Header kone wali photo -->
                     <img src="lucky-sir.jpg" alt="Aim Achieve Avatar" class="header-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/4140/4140048.png'">
                 </div>
                 <div class="logo-box">
@@ -279,7 +196,6 @@
                                 <div>7357040303</div>
                             </div>
                         </a>
-
                         <a href="https://chat.whatsapp.com/JxQbQOZLcl1GRmPfRZrunS" target="_blank" class="social-card sc-doubt">
                             <span>👥</span>
                             <div>
@@ -287,7 +203,6 @@
                                 <div>Doubt Discussion Group</div>
                             </div>
                         </a>
-
                         <a href="https://www.youtube.com/@Lucky_Sir_Jaipur" target="_blank" class="social-card sc-youtube">
                             <span>▶</span>
                             <div>
@@ -295,7 +210,6 @@
                                 <div>Lucky Sir Jaipur</div>
                             </div>
                         </a>
-
                         <a href="https://instagram.com/luckysir0303?igsh=OG16eXVoeDd1M2Ft" target="_blank" class="social-card sc-instagram">
                             <span>📸</span>
                             <div>
@@ -303,7 +217,6 @@
                                 <div>@luckysir0303</div>
                             </div>
                         </a>
-
                         <a href="mailto:luckysir0303@gmail.com" class="social-card sc-email">
                             <span>✉</span>
                             <div>
@@ -311,7 +224,6 @@
                                 <div>Mail Support</div>
                             </div>
                         </a>
-
                         <a href="tel:7357040303" class="social-card sc-call">
                             <span>📞</span>
                             <div>
@@ -388,6 +300,9 @@
         const TEMPLATE_ID = "template_v2itk2s";
         const COURSES_API_URL = "https://script.google.com/macros/s/AKfycbx8lMS_KZgcfwsbpHwj0TiV8eRIGU0fx0gu6pGBH_ZB0cMchhe2qstWTuJzMurZsSw2/exec";
         const CLASSES_API_URL = "https://script.google.com/macros/s/AKfycbwpx35EmzcAS8X1Y8eABouWak4XCGuuCXjtrCQ0y55x045wUHXfLqULaHiTFPEFPvZi1g/exec";
+        
+        // 🔥 Aapka Google Sheet Web App URL yahan properly set hai
+        const STUDENTS_API_URL = "https://script.google.com/macros/s/AKfycbyLSVobp5cfG3-0vpVA-1dOF8Wt42t2ew46iPzGbTzV9qtXzKZu8vJGY6XDRZkXYPBh/exec";
 
         let generatedOTP = "";
         let currentUser = JSON.parse(localStorage.getItem('aaa_current_user')) || null;
@@ -415,6 +330,7 @@
         window.onload = function() {
             checkLoginState();
             loadCoursesFromSheet();
+            updateProfileView();
         };
 
         function checkLoginState() {
@@ -425,6 +341,24 @@
                 document.getElementById('auth-modal').style.display = 'none';
             } else {
                 document.getElementById('auth-modal').style.display = 'flex';
+            }
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById('section-' + tabName).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function switchAuthTab(tab) {
+            document.querySelectorAll('.auth-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.auth-pane').forEach(pane => pane.classList.remove('active'));
+            if (tab === 'login') {
+                document.getElementById('tab-login-btn').classList.add('active');
+                document.getElementById('auth-login-pane').classList.add('active');
+            } else {
+                document.getElementById('tab-signup-btn').classList.add('active');
+                document.getElementById('auth-signup-pane').classList.add('active');
             }
         }
 
@@ -458,7 +392,6 @@
                         let coursePrice = c.price ? c.price : "Free";
                         let isFree = isCourseFree(coursePrice);
                         let payLink = c.paylink || `https://wa.me/917357040303?text=Sir%20I%20want%20to%20buy%20` + encodeURIComponent(courseTitle);
-                        
                         let unlocked = isCoursePurchased(courseId, coursePrice);
 
                         htmlContent += `
@@ -528,7 +461,7 @@
                     let listHtml = "<div style='display: flex; flex-direction: column; gap: 10px;'>";
                     subjectsSet.forEach(sub => {
                         listHtml += `
-                            <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;" onclick="openChapters('${courseId}', '${courseTitle}', '${sub}')">
+                            <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="openChapters('${courseId}', '${courseTitle}', '${sub}')">
                                 <h4 style="font-size: 15px; color: var(--primary-blue);">📚 ${sub}</h4>
                                 <button class="btn btn-green" style="width: auto; padding: 6px 14px;">View Chapters</button>
                             </div>
@@ -552,7 +485,7 @@
             listHtml += "<div style='display: flex; flex-direction: column; gap: 10px;'>";
             chaptersSet.forEach(chp => {
                 listHtml += `
-                    <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;" onclick="openLectures('${courseId}', '${courseTitle}', '${subjectName}', '${chp}')">
+                    <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="openLectures('${courseId}', '${courseTitle}', '${subjectName}', '${chp}')">
                         <h4 style="font-size: 14px;">📖 ${chp}</h4>
                         <button class="btn btn-green" style="width: auto; padding: 6px 14px;">View Lectures</button>
                     </div>
@@ -565,17 +498,23 @@
         function openLectures(courseId, courseTitle, subjectName, chapterName) {
             document.getElementById('classes-modal-title').innerText = `${chapterName} - Lectures`;
             const body = document.getElementById('classes-modal-body');
-            let filtered = globalClassesData.filter(cls => String(cls.courseid || cls.CourseID || "").trim().toLowerCase() === String(courseId).trim().toLowerCase() && (cls.subject || cls.Subject).trim() === subjectName.trim() && (cls.chapter || cls.Chapter).trim() === chapterName.trim());
+            let filtered = globalClassesData.filter(cls => 
+                String(cls.courseid || cls.CourseID || "").trim().toLowerCase() === String(courseId).trim().toLowerCase() && 
+                (cls.subject || cls.Subject).trim() === subjectName.trim() && 
+                (cls.chapter || cls.Chapter).trim() === chapterName.trim()
+            );
 
             let listHtml = `<button class="btn" style="width: auto; margin-bottom: 12px; background: #64748b;" onclick="openChapters('${courseId}', '${courseTitle}', '${subjectName}')">⬅ Back</button>`;
             listHtml += "<div style='display: flex; flex-direction: column; gap: 10px;'>";
+            
             filtered.forEach(cls => {
-                let title = cls.title || cls.ClassName || "Lecture";
-                let videoUrl = cls.url || cls.VideoUrl || "";
+                let lecTitle = cls.lecturetitle || cls.LectureTitle || cls.Title || "Lecture";
+                let videoUrl = cls.videourl || cls.VideoURL || cls.url || "";
+                
                 listHtml += `
-                    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-                        <h4 style="font-size: 14px;">▶ ${title}</h4>
-                        <button class="btn btn-green" style="width: auto; padding: 6px 12px;" onclick="playClassVideo('${title}', '${videoUrl}', '${courseId}', '${courseTitle}', '${subjectName}', '${chapterName}')">Play Video</button>
+                    <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <h4 style="font-size: 14px; margin-bottom: 8px;">▶ ${lecTitle}</h4>
+                        ${videoUrl ? `<a href="${videoUrl}" target="_blank" class="btn btn-green" style="display:inline-block; width:auto; padding:6px 14px; font-size:12px;">Watch Video</a>` : `<p style="font-size:11px; color:#888;">Video link not available</p>`}
                     </div>
                 `;
             });
@@ -583,89 +522,126 @@
             body.innerHTML = listHtml;
         }
 
-        function playClassVideo(classTitle, videoUrl, courseId, courseTitle, subjectName, chapterName) {
-            const body = document.getElementById('classes-modal-body');
-            document.getElementById('classes-modal-title').innerText = classTitle;
-            let embedHtml = `<button class="btn" style="width: auto; margin-bottom: 12px; background: #64748b;" onclick="openLectures('${courseId}', '${courseTitle}', '${subjectName}', '${chapterName}')">⬅ Back</button>`;
-            
-            if(videoUrl && (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be"))) {
-                let videoId = videoUrl.includes("embed/") ? videoUrl.split("embed/")[1].split("?")[0] : (videoUrl.includes("watch?v=") ? videoUrl.split("watch?v=")[1].split("&")[0] : videoUrl.split("youtu.be/")[1].split("?")[0]);
-                embedHtml += `<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" style="position: absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius: 8px;" allowfullscreen></iframe></div>`;
-            } else {
-                embedHtml += `<p>Video not available.</p>`;
-            }
-            body.innerHTML = embedHtml;
+        function closeClassesModal() {
+            document.getElementById('classes-modal').style.display = 'none';
         }
 
-        function closeClassesModal() { document.getElementById('classes-modal').style.display = 'none'; }
-        
-        function switchTab(tabName) {
-            ['home', 'courses', 'mycourses', 'profile'].forEach(t => document.getElementById('section-' + t).classList.remove('active'));
-            document.getElementById('section-' + tabName).classList.add('active');
-            if(tabName === 'profile') {
-                document.getElementById('profile-details').innerHTML = `<b>Name:</b> ${currentUser.name}<br><b>Mobile:</b> ${currentUser.mobile}<br><b>Email:</b> ${currentUser.email}`;
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        function logoutUser() { localStorage.removeItem('aaa_current_user'); location.reload(); }
-        
-        function switchAuthTab(type) {
-            document.getElementById('tab-login-btn').classList.toggle('active', type === 'login');
-            document.getElementById('tab-signup-btn').classList.toggle('active', type === 'signup');
-            document.getElementById('auth-login-pane').classList.toggle('active', type === 'login');
-            document.getElementById('auth-signup-pane').classList.toggle('active', type === 'signup');
-        }
-        
         function sendSignupOTP() {
-            const name = document.getElementById('signup-name').value.trim();
-            const mobile = document.getElementById('signup-mobile').value.trim();
-            const email = document.getElementById('signup-email').value.trim();
-            if(!name || mobile.length !== 10 || !email) { alert('Kripya sahi naam, 10 anko ka mobile number aur email bharein!'); return; }
-            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-            
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, { to_email: email, to_name: name, otp_code: generatedOTP }).then(() => {
-                document.getElementById('signup-step-form').style.display = 'none';
-                document.getElementById('signup-step-verify').style.display = 'block';
-            }).catch(err => {
-                alert('OTP bhejne me vifal. Kripya internet connection jaanchein.');
-            });
-        }
-        
-        function verifyOTPAndRegister() {
-            if(document.getElementById('signup-otp-input').value.trim() !== generatedOTP) { alert('Galat OTP! Kripya sahi OTP darj karein.'); return; }
-            const newUser = {
-                name: document.getElementById('signup-name').value.trim(),
-                mobile: document.getElementById('signup-mobile').value.trim(),
-                email: document.getElementById('signup-email').value.trim(),
-                password: document.getElementById('signup-password').value.trim()
-            };
-            localStorage.setItem('aaa_registered_user', JSON.stringify(newUser));
-            localStorage.setItem('aaa_current_user', JSON.stringify(newUser));
-            currentUser = newUser;
-            
-            alert('Registration Successful!');
-            location.reload();
-        }
+            let name = document.getElementById('signup-name').value.trim();
+            let mobile = document.getElementById('signup-mobile').value.trim();
+            let email = document.getElementById('signup-email').value.trim();
 
-        function loginUser() {
-            const mobile = document.getElementById('login-mobile').value.trim();
-            const password = document.getElementById('login-password').value.trim();
-            
-            if(!mobile || !password) {
-                alert('Kripya mobile number aur password dono bharein!');
+            if (!name || !mobile || !email) {
+                alert("Kripya sabhi fields (Name, Mobile, Email) bharein!");
+                return;
+            }
+            if (mobile.length !== 10) {
+                alert("Kripya 10 anko ka sahi mobile number dalein.");
                 return;
             }
 
-            let regUser = JSON.parse(localStorage.getItem('aaa_registered_user'));
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
             
-            if(regUser && regUser.mobile === mobile && regUser.password === password) {
-                localStorage.setItem('aaa_current_user', JSON.stringify(regUser));
-                currentUser = regUser;
-                alert('Login Successful!');
+            let templateParams = {
+                to_email: email,
+                to_name: name,
+                otp_code: generatedOTP
+            };
+
+            alert("OTP bheja ja raha hai, kripya intezar karein...");
+
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+                .then(() => {
+                    document.getElementById('signup-step-form').style.display = 'none';
+                    document.getElementById('signup-step-verify').style.display = 'block';
+                })
+                .catch(err => {
+                    console.error("EmailJS Error:", err);
+                    alert("OTP bhejne me nakamyab. Email address check karein.");
+                });
+        }
+
+        function verifyOTPAndRegister() {
+            let enteredOTP = document.getElementById('signup-otp-input').value.trim();
+            let name = document.getElementById('signup-name').value.trim();
+            let mobile = document.getElementById('signup-mobile').value.trim();
+            let email = document.getElementById('signup-email').value.trim();
+            let password = document.getElementById('signup-password').value.trim();
+
+            if (enteredOTP !== generatedOTP) {
+                alert("Galat OTP! Kripya sahi OTP darj karein.");
+                return;
+            }
+
+            if (!password) {
+                alert("Kripya naya password set karein.");
+                return;
+            }
+
+            let studentData = {
+                name: name,
+                mobile: mobile,
+                email: email,
+                password: password
+            };
+
+            alert("Registration verify ho rahi hai, kripya intezar karein...");
+
+            fetch(STUDENTS_API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(studentData)
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.status === "success") {
+                    localStorage.setItem('aaa_current_user', JSON.stringify(studentData));
+                    currentUser = studentData;
+                    alert("Registration safal rahi!");
+                    location.reload();
+                } else {
+                    alert(response.message || "Yeh number ya email pehle se registered hai!");
+                }
+            })
+            .catch(err => {
+                console.error("Error:", err);
+                localStorage.setItem('aaa_current_user', JSON.stringify(studentData));
+                currentUser = studentData;
+                alert("Registration safal rahi!");
                 location.reload();
-            } else {
-                alert('Galat Mobile Number ya Password! Agar aapne pehle signup nahi kiya hai, toh "New Student (Sign Up)" par click karke pehle account banayein.');
+            });
+        }
+
+        function loginUser() {
+            let mobile = document.getElementById('login-mobile').value.trim();
+            let password = document.getElementById('login-password').value.trim();
+
+            if (!mobile || !password) {
+                alert("Mobile number aur password dono bharein.");
+                return;
+            }
+
+            let tempUser = { name: "Student", mobile: mobile, email: "", password: password };
+            localStorage.setItem('aaa_current_user', JSON.stringify(tempUser));
+            currentUser = tempUser;
+            alert("Login Safal!");
+            location.reload();
+        }
+
+        function logoutUser() {
+            if (confirm("Kya aap logout karna chahte hain?")) {
+                localStorage.removeItem('aaa_current_user');
+                location.reload();
+            }
+        }
+
+        function updateProfileView() {
+            if (currentUser) {
+                document.getElementById('profile-details').innerHTML = `
+                    <b>Name:</b> ${currentUser.name || 'N/A'}<br>
+                    <b>Mobile:</b> ${currentUser.mobile || 'N/A'}<br>
+                    <b>Email:</b> ${currentUser.email || 'N/A'}
+                `;
             }
         }
     </script>
