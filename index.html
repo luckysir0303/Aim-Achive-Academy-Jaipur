@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIM ACHIVE ACADEMY JAIPUR</title>
+    <title>AIM ACHIEVE ACADEMY JAIPUR</title>
     <!-- PWA Manifest Link -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1e3a8a">
+    
+    <!-- Home Screen Icon ke liye Apple & Android touch icon -->
+    <link rel="apple-touch-icon" href="lucky-sir.jpg">
+    <link rel="icon" type="image/jpeg" href="lucky-sir.jpg">
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -16,9 +20,138 @@
         :root { --bg-color: #f4f6f9; --text-color: #333; --card-bg: #ffffff; --nav-bg: #1e3a8a; --border-color: #e2e8f0; --primary-blue: #2563eb; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 70px; }
-        header { background: var(--nav-bg); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo-box h1 { font-size: 16px; font-weight: bold; }
-        .logo-box span { font-size: 10px; color: #fde047; }
+        
+        /* --- 5 SECONDS SPLASH SCREEN ANIMATION STYLING --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: fadeOutSplash 0.8s ease 4.2s forwards;
+        }
+
+        .fire-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,69,0,0.8) 0%, rgba(255,140,0,0.4) 40%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: firePulse 1.5s infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes firePulse {
+            0% { transform: scale(1); opacity: 0.8; filter: blur(10px); }
+            100% { transform: scale(1.3); opacity: 1; filter: blur(20px); }
+        }
+
+        .splash-logo-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: dropAndImpact 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+            opacity: 0;
+            transform: translateY(-400px) scale(0.5);
+        }
+
+        @keyframes dropAndImpact {
+            0% { transform: translateY(-400px) scale(0.5); opacity: 0; }
+            70% { transform: translateY(20px) scale(1.1); opacity: 1; }
+            85% { transform: translateY(-10px) scale(0.95); opacity: 1; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .splash-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #ff4500;
+            object-fit: cover;
+            box-shadow: 0 0 25px #ff4500, inset 0 0 15px #ff8c00;
+            background: #fff;
+        }
+
+        .splash-title {
+            color: #fff;
+            font-size: 26px;
+            font-weight: 900;
+            margin-top: 15px;
+            text-shadow: 0 0 10px #ff4500, 0 0 20px #ff0000;
+            letter-spacing: 1px;
+        }
+
+        .splash-subtitle {
+            color: #fde047;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .dust-cloud {
+            position: absolute;
+            bottom: 35%;
+            width: 150px;
+            height: 20px;
+            background: rgba(200, 200, 200, 0.5);
+            border-radius: 50%;
+            filter: blur(8px);
+            opacity: 0;
+            z-index: 2;
+            animation: dustBurst 0.6s ease 1.6s forwards;
+        }
+
+        @keyframes dustBurst {
+            0% { transform: scale(0.2); opacity: 0; }
+            50% { transform: scale(2.5); opacity: 0.8; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+
+        @keyframes fadeOutSplash {
+            0% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        /* --- END OF SPLASH SCREEN --- */
+
+        header { background: var(--nav-bg); color: white; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .header-brand { display: flex; align-items: center; gap: 12px; }
+        
+        .header-avatar-container {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fde047, #f59e0b);
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulseGlow 2s infinite;
+        }
+        .header-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(253, 224, 71, 0.6); }
+            70% { box-shadow: 0 0 0 10px rgba(253, 224, 71, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(253, 224, 71, 0); }
+        }
+
+        .logo-box h1 { font-size: 15px; font-weight: 900; letter-spacing: 0.5px; }
+        .logo-box span { font-size: 10px; color: #fde047; font-weight: 600; }
+
         .welcome-banner { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; text-align: center; padding: 22px 15px; margin: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2); }
         .welcome-banner h2 { font-size: 20px; font-weight: 900; color: #fde047; margin-bottom: 5px; }
         .container { padding: 0 15px 15px 15px; max-width: 1200px; margin: auto; }
@@ -50,7 +183,6 @@
         .content-section { display: none; }
         .content-section.active { display: block; }
         
-        /* Modal & Auth Tabs Fix */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 99999; justify-content: center; align-items: center; padding: 15px; overflow-y: auto; }
         .modal-content { background: var(--card-bg); color: var(--text-color); padding: 22px; border-radius: 12px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; z-index: 100000; }
         
@@ -74,6 +206,18 @@
 </head>
 <body>
 
+    <!-- 🔥 5 SECONDS SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div class="fire-bg"></div>
+        <div class="dust-cloud"></div>
+        <div class="splash-logo-container">
+            <!-- GitHub par uploaded photo ka naam yahan likha hai -->
+            <img src="lucky-sir.jpg" alt="Lucky Sir Jaipur" class="splash-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/4140/4140048.png'">
+            <div class="splash-title">AIM ACHIEVE ACADEMY</div>
+            <div class="splash-subtitle">LUCKY SIR JAIPUR</div>
+        </div>
+    </div>
+
     <div id="classes-modal" class="modal">
         <div class="modal-content" style="max-width: 650px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
@@ -86,14 +230,20 @@
 
     <div id="website-main-wrapper" style="filter: blur(5px); pointer-events: none; user-select: none;">
         <header>
-            <div class="logo-box">
-                <h1>AIM ACHIVE ACADEMY</h1>
-                <span>JAIPUR • SUCCESS PATH</span>
+            <div class="header-brand">
+                <div class="header-avatar-container">
+                    <!-- Header kone wali photo -->
+                    <img src="lucky-sir.jpg" alt="Aim Achieve Avatar" class="header-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/4140/4140048.png'">
+                </div>
+                <div class="logo-box">
+                    <h1>AIM ACHIEVE ACADEMY</h1>
+                    <span>JAIPUR • SUCCESS PATH</span>
+                </div>
             </div>
         </header>
 
         <div class="welcome-banner">
-            <h2>WELCOME TO AIM ACHIVE ACADEMY JAIPUR</h2>
+            <h2>WELCOME TO AIM ACHIEVE ACADEMY JAIPUR</h2>
             <p>Your Ultimate Success Path for Competitive Exams</p>
         </div>
 
@@ -112,7 +262,7 @@
                 </div>
 
                 <div class="card" style="margin-bottom: 15px;">
-                    <h3>Aim ACHIVE Academy Jaipur</h3>
+                    <h3>Aim Achieve Academy Jaipur</h3>
                     <p>Explore our free & paid courses, test series, and video lectures.</p>
                     <button class="btn btn-green" onclick="switchTab('courses')">Explore Courses</button>
                 </div>
@@ -200,7 +350,7 @@
         <div class="bottom-nav-item" onclick="switchTab('profile')"><span>👤</span>Profile</div>
     </div>
 
-    <!-- Login/Signup Modal Fixed -->
+    <!-- Login/Signup Modal -->
     <div id="auth-modal" class="modal" style="display: flex;">
         <div class="modal-content">
             <h3 style="color: var(--primary-blue); margin-bottom: 15px; text-align: center;">🔐 Student Portal Access</h3>
@@ -238,7 +388,6 @@
         const TEMPLATE_ID = "template_v2itk2s";
         const COURSES_API_URL = "https://script.google.com/macros/s/AKfycbx8lMS_KZgcfwsbpHwj0TiV8eRIGU0fx0gu6pGBH_ZB0cMchhe2qstWTuJzMurZsSw2/exec";
         const CLASSES_API_URL = "https://script.google.com/macros/s/AKfycbwpx35EmzcAS8X1Y8eABouWak4XCGuuCXjtrCQ0y55x045wUHXfLqULaHiTFPEFPvZi1g/exec";
-        const STUDENT_API_URL = "https://script.google.com/macros/s/AKfycbyLSVobp5cfG3-0vpVA-1dOF8Wt42t2ew46iPzGbTzV9qtXzKZu8vJGY6XDRZkXYPBh/exec";
 
         let generatedOTP = "";
         let currentUser = JSON.parse(localStorage.getItem('aaa_current_user')) || null;
@@ -495,37 +644,30 @@
             localStorage.setItem('aaa_current_user', JSON.stringify(newUser));
             currentUser = newUser;
             
-            if(STUDENT_API_URL) {
-                fetch(STUDENT_API_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(newUser)
-                }).catch(err => console.log(err));
-            }
-            alert('Registration safal raha!');
-            checkLoginState();
-            loadCoursesFromSheet();
+            alert('Registration Successful!');
+            location.reload();
         }
-        
+
         function loginUser() {
             const mobile = document.getElementById('login-mobile').value.trim();
             const password = document.getElementById('login-password').value.trim();
-            const regUser = JSON.parse(localStorage.getItem('aaa_registered_user'));
-            if(!regUser || regUser.mobile !== mobile || regUser.password !== password) { alert('Galat mobile number ya password!'); return; }
-            localStorage.setItem('aaa_current_user', JSON.stringify(regUser));
-            currentUser = regUser;
-            checkLoginState();
-            loadCoursesFromSheet();
+            
+            if(!mobile || !password) {
+                alert('Kripya mobile number aur password dono bharein!');
+                return;
+            }
+
+            let regUser = JSON.parse(localStorage.getItem('aaa_registered_user'));
+            
+            if(regUser && regUser.mobile === mobile && regUser.password === password) {
+                localStorage.setItem('aaa_current_user', JSON.stringify(regUser));
+                currentUser = regUser;
+                alert('Login Successful!');
+                location.reload();
+            } else {
+                alert('Galat Mobile Number ya Password! Agar aapne pehle signup nahi kiya hai, toh "New Student (Sign Up)" par click karke pehle account banayein.');
+            }
         }
-    <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then((reg) => console.log('Service Worker Registered!', reg))
-        .catch((err) => console.log('Service Worker Failed!', err));
-    });
-  }
-</script>
+    </script>
 </body>
 </html>
