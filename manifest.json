@@ -1,7 +1,7 @@
 {
-  "name": "Aim Archive Academy Jaipur",
-  "short_name": "AAA Jaipur",
-  "start_url": "/",
+  "name": "AIM ACHIEVE ACADEMY JAIPUR",
+  "short_name": "Aim Achieve",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1e3a8a",
