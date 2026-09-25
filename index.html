@@ -300,8 +300,6 @@
         const TEMPLATE_ID = "template_v2itk2s";
         const COURSES_API_URL = "https://script.google.com/macros/s/AKfycbx8lMS_KZgcfwsbpHwj0TiV8eRIGU0fx0gu6pGBH_ZB0cMchhe2qstWTuJzMurZsSw2/exec";
         const CLASSES_API_URL = "https://script.google.com/macros/s/AKfycbwpx35EmzcAS8X1Y8eABouWak4XCGuuCXjtrCQ0y55x045wUHXfLqULaHiTFPEFPvZi1g/exec";
-        
-        // 🔥 Aapka Google Sheet Web App URL yahan properly set hai
         const STUDENTS_API_URL = "https://script.google.com/macros/s/AKfycbyLSVobp5cfG3-0vpVA-1dOF8Wt42t2ew46iPzGbTzV9qtXzKZu8vJGY6XDRZkXYPBh/exec";
 
         let generatedOTP = "";
@@ -579,6 +577,7 @@
             }
 
             let studentData = {
+                action: "register",
                 name: name,
                 mobile: mobile,
                 email: email,
@@ -605,10 +604,7 @@
             })
             .catch(err => {
                 console.error("Error:", err);
-                localStorage.setItem('aaa_current_user', JSON.stringify(studentData));
-                currentUser = studentData;
-                alert("Registration safal rahi!");
-                location.reload();
+                alert("Server Error! Kripya dobara koshish karein.");
             });
         }
 
@@ -621,11 +617,40 @@
                 return;
             }
 
-            let tempUser = { name: "Student", mobile: mobile, email: "", password: password };
-            localStorage.setItem('aaa_current_user', JSON.stringify(tempUser));
-            currentUser = tempUser;
-            alert("Login Safal!");
-            location.reload();
+            let loginData = {
+                action: "login",
+                mobile: mobile,
+                password: password
+            };
+
+            alert("Login ki jaanch ki ja rahi hai, kripya intezar karein...");
+
+            fetch(STUDENTS_API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(loginData)
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.status === "success") {
+                    let userObj = {
+                        name: response.name,
+                        mobile: mobile,
+                        email: response.email,
+                        password: password
+                    };
+                    localStorage.setItem('aaa_current_user', JSON.stringify(userObj));
+                    currentUser = userObj;
+                    alert("Login Safal!");
+                    location.reload();
+                } else {
+                    alert(response.message || "Login nakamyab. Details check karein.");
+                }
+            })
+            .catch(err => {
+                console.error("Error:", err);
+                alert("Server Error! Kripya dobara koshish karein.");
+            });
         }
 
         function logoutUser() {
