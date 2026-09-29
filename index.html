@@ -19,57 +19,25 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 70px; }
         
-        /* SPLASH SCREEN */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
             animation: fadeOutSplash 0.8s ease 4.2s forwards;
         }
-        .fire-bg {
-            position: absolute; width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(255,69,0,0.8) 0%, rgba(255,140,0,0.4) 40%, rgba(0,0,0,0) 70%);
-            border-radius: 50%; animation: firePulse 1.5s infinite alternate; z-index: 1;
-        }
-        @keyframes firePulse {
-            0% { transform: scale(1); opacity: 0.8; filter: blur(10px); }
-            100% { transform: scale(1.3); opacity: 1; filter: blur(20px); }
-        }
-        .splash-logo-container {
-            position: relative; z-index: 2; text-align: center;
-            animation: dropAndImpact 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards; opacity: 0; transform: translateY(-400px) scale(0.5);
-        }
-        @keyframes dropAndImpact {
-            0% { transform: translateY(-400px) scale(0.5); opacity: 0; }
-            70% { transform: translateY(20px) scale(1.1); opacity: 1; }
-            85% { transform: translateY(-10px) scale(0.95); opacity: 1; }
-            100% { transform: translateY(0) scale(1); opacity: 1; }
-        }
-        .splash-avatar {
-            width: 110px; height: 110px; border-radius: 50%; border: 4px solid #ff4500; object-fit: cover;
-            box-shadow: 0 0 25px #ff4500, inset 0 0 15px #ff8c00; background: #fff;
-        }
+        .fire-bg { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,69,0,0.8) 0%, rgba(255,140,0,0.4) 40%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: firePulse 1.5s infinite alternate; z-index: 1; }
+        @keyframes firePulse { 0% { transform: scale(1); opacity: 0.8; filter: blur(10px); } 100% { transform: scale(1.3); opacity: 1; filter: blur(20px); } }
+        .splash-logo-container { position: relative; z-index: 2; text-align: center; animation: dropAndImpact 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards; opacity: 0; transform: translateY(-400px) scale(0.5); }
+        @keyframes dropAndImpact { 0% { transform: translateY(-400px) scale(0.5); opacity: 0; } 70% { transform: translateY(20px) scale(1.1); opacity: 1; } 85% { transform: translateY(-10px) scale(0.95); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        .splash-avatar { width: 110px; height: 110px; border-radius: 50%; border: 4px solid #ff4500; object-fit: cover; box-shadow: 0 0 25px #ff4500, inset 0 0 15px #ff8c00; background: #fff; }
         .splash-title { color: #fff; font-size: 26px; font-weight: 900; margin-top: 15px; text-shadow: 0 0 10px #ff4500; }
         .splash-subtitle { color: #fde047; font-size: 16px; font-weight: bold; margin-top: 5px; text-transform: uppercase; }
-        .dust-cloud {
-            position: absolute; bottom: 35%; width: 150px; height: 20px; background: rgba(200, 200, 200, 0.5);
-            border-radius: 50%; filter: blur(8px); opacity: 0; z-index: 2; animation: dustBurst 0.6s ease 1.6s forwards;
-        }
-        @keyframes dustBurst {
-            0% { transform: scale(0.2); opacity: 0; }
-            50% { transform: scale(2.5); opacity: 0.8; }
-            100% { transform: scale(4); opacity: 0; }
-        }
-        @keyframes fadeOutSplash {
-            0% { opacity: 1; visibility: visible; }
-            100% { opacity: 0; visibility: hidden; }
-        }
+        .dust-cloud { position: absolute; bottom: 35%; width: 150px; height: 20px; background: rgba(200, 200, 200, 0.5); border-radius: 50%; filter: blur(8px); opacity: 0; z-index: 2; animation: dustBurst 0.6s ease 1.6s forwards; }
+        @keyframes dustBurst { 0% { transform: scale(0.2); opacity: 0; } 50% { transform: scale(2.5); opacity: 0.8; } 100% { transform: scale(4); opacity: 0; } }
+        @keyframes fadeOutSplash { 0% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
 
         header { background: var(--nav-bg); color: white; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         .header-brand { display: flex; align-items: center; gap: 12px; }
-        .header-avatar-container {
-            position: relative; width: 48px; height: 48px; border-radius: 50%;
-            background: linear-gradient(135deg, #fde047, #f59e0b); padding: 2px; display: flex; align-items: center; justify-content: center;
-        }
+        .header-avatar-container { position: relative; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #fde047, #f59e0b); padding: 2px; display: flex; align-items: center; justify-content: center; }
         .header-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #fff; }
         .logo-box h1 { font-size: 15px; font-weight: 900; }
         .logo-box span { font-size: 10px; color: #fde047; font-weight: 600; }
@@ -246,10 +214,18 @@
             </div>
 
             <div id="section-profile" class="content-section">
-                <div class="card">
+                <div class="card" style="margin-bottom: 15px;">
                     <h3 style="margin-bottom: 10px; color: var(--primary-blue);">👤 Student Profile</h3>
                     <div id="profile-details" style="font-size: 13px; line-height: 1.6; margin-bottom: 15px;"></div>
                     <button class="btn btn-red" onclick="logoutUser()">🚪 Logout</button>
+                </div>
+
+                <!-- Refer & Earn 3 Friends Free Course Box -->
+                <div class="card" style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #93c5fd;">
+                    <h3 style="color: #1e40af; margin-bottom: 5px;">🎁 3 Doston ko Share Karein, Course Free Paayein!</h3>
+                    <p style="font-size: 12px; color: #1e3a8a; margin-bottom: 10px;">Apne link se **3 naye doston** ko join karwayein aur koi bhi paid course ekdum free mein unlock karein!</p>
+                    <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px; color: #059669;" id="referral-count-display">👥 Total Referrals: 0 / 3</div>
+                    <button class="btn btn-green" onclick="shareReferralLink()">📲 Share on WhatsApp</button>
                 </div>
             </div>
         </div>
@@ -262,11 +238,14 @@
         <div class="bottom-nav-item" onclick="switchTab('profile')"><span>👤</span>Profile</div>
     </div>
 
-    <!-- Login/Signup Modal -->
     <div id="auth-modal" class="modal" style="display: flex;">
         <div class="modal-content">
             <h3 style="color: var(--primary-blue); margin-bottom: 15px; text-align: center;">🔐 Student Portal Access</h3>
             
+            <div id="referred-banner" style="display: none; background: #ecfdf5; border: 1px solid #059669; color: #065f46; padding: 8px; border-radius: 6px; font-size: 11px; text-align: center; margin-bottom: 12px; font-weight: bold;">
+                🎉 You were invited by a friend! Sign up to join.
+            </div>
+
             <div class="auth-tabs">
                 <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">Existing Login</button>
                 <button class="auth-tab-btn" id="tab-signup-btn" onclick="switchAuthTab('signup')">New Student (Sign Up)</button>
@@ -307,6 +286,13 @@
         let globalCoursesData = [];
         let globalClassesData = [];
         let deferredPrompt;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const refMobile = urlParams.get('ref');
+        if (refMobile) {
+            localStorage.setItem('aaa_referred_by', refMobile);
+            document.getElementById('referred-banner').style.display = 'block';
+        }
 
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -366,11 +352,10 @@
             return p === 'free' || p === '0' || p === 'rs 0' || p === '₹0' || p === '';
         }
 
-        function isCoursePurchased(courseId, priceStr) {
-            if (isCourseFree(priceStr)) return true;
+        function isCoursePurchased(courseId) {
             if (!currentUser) return false;
-            let purchasedList = JSON.parse(localStorage.getItem('aaa_purchased_' + currentUser.mobile)) || [];
-            return purchasedList.includes(String(courseId));
+            let unlockedList = currentUser.unlockedCourses ? currentUser.unlockedCourses.split(",") : [];
+            return unlockedList.includes(String(courseId));
         }
 
         function loadCoursesFromSheet() {
@@ -390,7 +375,7 @@
                         let coursePrice = c.price ? c.price : "Free";
                         let isFree = isCourseFree(coursePrice);
                         let payLink = c.paylink || `https://wa.me/917357040303?text=Sir%20I%20want%20to%20buy%20` + encodeURIComponent(courseTitle);
-                        let unlocked = isCoursePurchased(courseId, coursePrice);
+                        let unlocked = isCoursePurchased(courseId);
 
                         htmlContent += `
                             <div class="card">
@@ -400,10 +385,13 @@
                                     <div class="course-price ${isFree ? 'free' : ''}">🏷️ ${isFree ? 'Free' : coursePrice}</div>
                                 </div>
                                 ${isFree ? 
-                                    `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', 'true')">📖 Start Learning (Free)</button>` :
+                                    `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}')">📖 Start Learning (Free)</button>` :
                                     (unlocked ? 
-                                        `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', 'false')">📖 Access Classes (Unlocked)</button>` :
-                                        `<button class="btn btn-yellow" onclick="buyOrRequestCourse('${courseTitle}', '${coursePrice}', '${payLink}')">🔒 Buy Course / Pay</button>`
+                                        `<button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}')">📖 Access Classes (Unlocked)</button>` :
+                                        `<div>
+                                            <button class="btn btn-yellow" onclick="buyOrRequestCourse('${courseTitle}', '${coursePrice}', '${payLink}')">🔒 Buy Course (${coursePrice})</button>
+                                            <button class="btn btn-green" style="margin-top:6px;" onclick="unlockCourseWithReferrals('${courseId}')">🔓 Unlock Free (3 Referrals)</button>
+                                         </div>`
                                     )
                                 }
                             </div>
@@ -416,9 +404,9 @@
                                     <div>
                                         <h3>${courseTitle}</h3>
                                         <p>${courseDesc}</p>
-                                        <span style="color:#059669; font-weight:bold; font-size:12px;">✔ ${isFree ? 'Free Enrolled' : 'Active Batch'}</span>
+                                        <span style="color:#059669; font-weight:bold; font-size:12px;">✔ ${isFree ? 'Free Enrolled' : 'Unlocked via 3 Referrals'}</span>
                                     </div>
-                                    <button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}', '${isFree}')">Start Learning</button>
+                                    <button class="btn btn-green" onclick="openCourseSubjects('${courseId}', '${courseTitle}')">Start Learning</button>
                                 </div>
                             `;
                         }
@@ -430,13 +418,58 @@
                 .catch(err => { grid.innerHTML = "<p style='color:red; text-align:center;'>Failed to load courses.</p>"; });
         }
 
+        function unlockCourseWithReferrals(courseId) {
+            if (!currentUser) {
+                alert("Pehle login karein!");
+                return;
+            }
+
+            let currentReferCount = Number(currentUser.referCount) || 0;
+
+            if (currentReferCount < 3) {
+                alert(`Abhi aapne ${currentReferCount} doston ko refer kiya hai. Course free unlock karne ke liye kam se kam 3 doston ko refer karna zaroori hai! Kripya WhatsApp par link share karein.`);
+                return;
+            }
+
+            if (confirm("Aapke 3 referrals poore ho chuke hain! Kya aap is course ko bilkul free mein unlock karna chahte hain?")) {
+                let unlockData = {
+                    action: "unlock_course",
+                    mobile: currentUser.mobile,
+                    courseId: courseId
+                };
+
+                alert("Course unlock kiya ja raha hai...");
+
+                fetch(STUDENTS_API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify(unlockData)
+                })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.status === "success") {
+                        currentUser.unlockedCourses = response.unlockedCourses;
+                        localStorage.setItem('aaa_current_user', JSON.stringify(currentUser));
+                        alert("Badhai ho! Course safal-purvak free mein unlock ho gaya hai!");
+                        location.reload();
+                    } else {
+                        alert(response.message || "Unlock karne mein samasya aayi.");
+                    }
+                })
+                .catch(err => {
+                    console.error("Error:", err);
+                    alert("Server Error! Dobara koshish karein.");
+                });
+            }
+        }
+
         function buyOrRequestCourse(title, price, payLink) {
             if (confirm(`Aap "${title}" course (${price}) khareedna chahte hain. WhatsApp par payment ka screenshot bhejein.`)) {
                 window.open(payLink, '_blank');
             }
         }
 
-        function openCourseSubjects(courseId, courseTitle, isFree) {
+        function openCourseSubjects(courseId, courseTitle) {
             document.getElementById('classes-modal-title').innerText = courseTitle + " - Subjects";
             const body = document.getElementById('classes-modal-body');
             body.innerHTML = "<p style='text-align:center; padding: 20px;'>Loading subjects...</p>";
@@ -540,12 +573,7 @@
 
             generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
             
-            let templateParams = {
-                to_email: email,
-                to_name: name,
-                otp_code: generatedOTP
-            };
-
+            let templateParams = { to_email: email, to_name: name, otp_code: generatedOTP };
             alert("OTP bheja ja raha hai, kripya intezar karein...");
 
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
@@ -553,10 +581,7 @@
                     document.getElementById('signup-step-form').style.display = 'none';
                     document.getElementById('signup-step-verify').style.display = 'block';
                 })
-                .catch(err => {
-                    console.error("EmailJS Error:", err);
-                    alert("OTP bhejne me nakamyab. Email address check karein.");
-                });
+                .catch(err => { alert("OTP bhejne me nakamyab."); });
         }
 
         function verifyOTPAndRegister() {
@@ -565,26 +590,13 @@
             let mobile = document.getElementById('signup-mobile').value.trim();
             let email = document.getElementById('signup-email').value.trim();
             let password = document.getElementById('signup-password').value.trim();
+            let referredBy = localStorage.getItem('aaa_referred_by') || "";
 
-            if (enteredOTP !== generatedOTP) {
-                alert("Galat OTP! Kripya sahi OTP darj karein.");
-                return;
-            }
+            if (enteredOTP !== generatedOTP) { alert("Galat OTP!"); return; }
+            if (!password) { alert("Password set karein."); return; }
 
-            if (!password) {
-                alert("Kripya naya password set karein.");
-                return;
-            }
-
-            let studentData = {
-                action: "register",
-                name: name,
-                mobile: mobile,
-                email: email,
-                password: password
-            };
-
-            alert("Registration verify ho rahi hai, kripya intezar karein...");
+            let studentData = { action: "register", name: name, mobile: mobile, email: email, password: password, referredBy: referredBy };
+            alert("Registration verify ho rahi hai...");
 
             fetch(STUDENTS_API_URL, {
                 method: "POST",
@@ -594,36 +606,27 @@
             .then(res => res.json())
             .then(response => {
                 if (response.status === "success") {
-                    localStorage.setItem('aaa_current_user', JSON.stringify(studentData));
-                    currentUser = studentData;
+                    localStorage.removeItem('aaa_referred_by');
+                    let userObj = { name: name, mobile: mobile, email: email, password: password, referCount: 0, unlockedCourses: "" };
+                    localStorage.setItem('aaa_current_user', JSON.stringify(userObj));
+                    currentUser = userObj;
                     alert("Registration safal rahi!");
                     location.reload();
                 } else {
-                    alert(response.message || "Yeh number ya email pehle se registered hai!");
+                    alert(response.message || "Error!");
                 }
             })
-            .catch(err => {
-                console.error("Error:", err);
-                alert("Server Error! Kripya dobara koshish karein.");
-            });
+            .catch(err => { alert("Server Error!"); });
         }
 
         function loginUser() {
             let mobile = document.getElementById('login-mobile').value.trim();
             let password = document.getElementById('login-password').value.trim();
 
-            if (!mobile || !password) {
-                alert("Mobile number aur password dono bharein.");
-                return;
-            }
+            if (!mobile || !password) { alert("Mobile aur password bharein."); return; }
 
-            let loginData = {
-                action: "login",
-                mobile: mobile,
-                password: password
-            };
-
-            alert("Login ki jaanch ki ja rahi hai, kripya intezar karein...");
+            let loginData = { action: "login", mobile: mobile, password: password };
+            alert("Login ki jaanch ki ja rahi hai...");
 
             fetch(STUDENTS_API_URL, {
                 method: "POST",
@@ -637,20 +640,19 @@
                         name: response.name,
                         mobile: mobile,
                         email: response.email,
-                        password: password
+                        password: password,
+                        referCount: response.referCount || 0,
+                        unlockedCourses: response.unlockedCourses || ""
                     };
                     localStorage.setItem('aaa_current_user', JSON.stringify(userObj));
                     currentUser = userObj;
                     alert("Login Safal!");
                     location.reload();
                 } else {
-                    alert(response.message || "Login nakamyab. Details check karein.");
+                    alert(response.message || "Login nakamyab.");
                 }
             })
-            .catch(err => {
-                console.error("Error:", err);
-                alert("Server Error! Kripya dobara koshish karein.");
-            });
+            .catch(err => { alert("Server Error!"); });
         }
 
         function logoutUser() {
@@ -667,7 +669,17 @@
                     <b>Mobile:</b> ${currentUser.mobile || 'N/A'}<br>
                     <b>Email:</b> ${currentUser.email || 'N/A'}
                 `;
+                let count = currentUser.referCount || 0;
+                document.getElementById('referral-count-display').innerText = `👥 Total Referrals: ${count} / 3`;
             }
+        }
+
+        function shareReferralLink() {
+            if (!currentUser || !currentUser.mobile) { alert("Pehle login karein!"); return; }
+            let currentWebsiteUrl = window.location.href.split('?')[0];
+            let refLink = `${currentWebsiteUrl}?ref=${currentUser.mobile}`;
+            let shareText = `🌟 Aim Achieve Academy Jaipur (Lucky Sir) par sabhi competitive exams ki best classes uplabdh hain! Is link se join karo aur free courses unlock karo: ${refLink}`;
+            window.open(`https://wa.me/?text=` + encodeURIComponent(shareText), '_blank');
         }
     </script>
 </body>
