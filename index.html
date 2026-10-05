@@ -85,6 +85,14 @@
         .auth-pane { display: none; width: 100%; }
         .auth-pane.active { display: block !important; }
 
+        /* Footer Style */
+        footer.main-footer { background: #1e293b; color: #cbd5e1; padding: 30px 15px 80px 15px; margin-top: 30px; font-size: 13px; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .footer-col h4 { color: #fde047; margin-bottom: 12px; font-size: 15px; }
+        .footer-col p, .footer-col a { color: #cbd5e1; text-decoration: none; display: block; margin-bottom: 8px; font-size: 12px; opacity: 0.9; }
+        .footer-col a:hover { color: #fff; text-decoration: underline; }
+        .footer-bottom { text-align: center; border-top: 1px solid #334155; margin-top: 20px; padding-top: 15px; font-size: 11px; color: #94a3b8; }
+
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-bg); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1001; }
         .bottom-nav-item { text-align: center; color: var(--text-color); text-decoration: none; font-size: 11px; font-weight: 600; cursor: pointer; }
         .bottom-nav-item span { display: block; font-size: 18px; }
@@ -104,6 +112,7 @@
         </div>
     </div>
 
+    <!-- Classes Content Modal -->
     <div id="classes-modal" class="modal">
         <div class="modal-content" style="max-width: 650px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
@@ -111,6 +120,17 @@
                 <span onclick="closeClassesModal()" style="font-size: 24px; font-weight: bold; cursor: pointer; color: #dc2626;">&times;</span>
             </div>
             <div id="classes-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Info Modals for Footer Links -->
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                <h3 id="info-modal-title" style="color: var(--primary-blue); font-size: 16px;">Information</h3>
+                <span onclick="closeInfoModal()" style="font-size: 24px; font-weight: bold; cursor: pointer; color: #dc2626;">&times;</span>
+            </div>
+            <div id="info-modal-body" style="font-size: 13px; line-height: 1.6;"></div>
         </div>
     </div>
 
@@ -157,11 +177,11 @@
                     <p style="font-size: 12px; color: #666; margin-bottom: 12px;">Judhein hamare sath hamare social media platforms par:</p>
                     
                     <div class="social-grid">
-                        <a href="https://wa.me/917357040303" target="_blank" class="social-card sc-whatsapp">
+                        <a href="https://wa.me/919694750598" target="_blank" class="social-card sc-whatsapp">
                             <span>💬</span>
                             <div>
                                 <div style="font-size: 11px; opacity: 0.9;">Direct Chat</div>
-                                <div>7357040303</div>
+                                <div>9694750598</div>
                             </div>
                         </a>
                         <a href="https://chat.whatsapp.com/JxQbQOZLcl1GRmPfRZrunS" target="_blank" class="social-card sc-doubt">
@@ -192,11 +212,11 @@
                                 <div>Mail Support</div>
                             </div>
                         </a>
-                        <a href="tel:7357040303" class="social-card sc-call">
+                        <a href="tel:9694750598" class="social-card sc-call">
                             <span>📞</span>
                             <div>
                                 <div style="font-size: 11px; opacity: 0.9;">Helpline</div>
-                                <div>Call Now</div>
+                                <div>9694750598</div>
                             </div>
                         </a>
                     </div>
@@ -229,6 +249,35 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer Added Here -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>Aim Achieve Academy</h4>
+                    <p>Jaipur's premier institute for SSC, Railway, Defence, Army & Air Force examinations, led by Lucky Sir.</p>
+                    <p>📞 Helpline: 9694750598</p>
+                    <p>✉ Email: luckysir0303@gmail.com</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#" onclick="switchTab('home'); return false;">Home Dashboard</a>
+                    <a href="#" onclick="switchTab('courses'); return false;">Explore Courses</a>
+                    <a href="#" onclick="switchTab('mycourses'); return false;">My Batches</a>
+                    <a href="https://wa.me/919694750598" target="_blank">Contact Support</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Policies & Info</h4>
+                    <a href="#" onclick="openInfoModal('Privacy Policy', 'Aim Achieve Academy respect your privacy. All student data including mobile number, email and course progress are securely handled and never shared with third parties.'); return false;">Privacy Policy</a>
+                    <a href="#" onclick="openInfoModal('Terms & Conditions', 'By using Aim Achieve Academy portal, you agree to abide by our study material copyright guidelines. Sharing video credentials can lead to account suspension.'); return false;">Terms & Conditions</a>
+                    <a href="#" onclick="openInfoModal('Refund Policy', 'All course purchases made on Aim Achieve Academy are final. Please check free sample lectures before purchasing any paid content.'); return false;">Refund Policy</a>
+                    <a href="#" onclick="openInfoModal('About Lucky Sir', 'Lucky Sir is a renowned Mathematics and Reasoning expert in Jaipur, dedicated to guiding students toward successful government careers.'); return false;">About Lucky Sir</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Aim Achieve Academy Jaipur. All Rights Reserved. Contact: 9694750598.
+            </div>
+        </footer>
     </div>
 
     <div class="bottom-nav">
@@ -238,6 +287,7 @@
         <div class="bottom-nav-item" onclick="switchTab('profile')"><span>👤</span>Profile</div>
     </div>
 
+    <!-- Login / Signup / Forgot Password Modal -->
     <div id="auth-modal" class="modal" style="display: flex;">
         <div class="modal-content">
             <h3 style="color: var(--primary-blue); margin-bottom: 15px; text-align: center;">🔐 Student Portal Access</h3>
@@ -246,17 +296,22 @@
                 🎉 You were invited by a friend! Sign up to join.
             </div>
 
-            <div class="auth-tabs">
+            <div class="auth-tabs" id="auth-tabs-container">
                 <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">Existing Login</button>
                 <button class="auth-tab-btn" id="tab-signup-btn" onclick="switchAuthTab('signup')">New Student (Sign Up)</button>
             </div>
 
+            <!-- Login Pane -->
             <div id="auth-login-pane" class="auth-pane active">
                 <div class="form-group"><label>Mobile Number</label><input type="text" id="login-mobile" placeholder="Enter Mobile Number" maxlength="10"></div>
                 <div class="form-group"><label>Password</label><input type="password" id="login-password" placeholder="Enter Password"></div>
                 <button class="btn btn-green" onclick="loginUser()">Login to Portal</button>
+                <div style="text-align: right; margin-top: 8px;">
+                    <a href="#" onclick="switchAuthTab('forgot'); return false;" style="font-size: 12px; color: var(--primary-blue); text-decoration: none; font-weight: bold;">Forgot Password?</a>
+                </div>
             </div>
 
+            <!-- Signup Pane -->
             <div id="auth-signup-pane" class="auth-pane">
                 <div id="signup-step-form">
                     <div class="form-group"><label>Full Name</label><input type="text" id="signup-name" placeholder="Enter Full Name"></div>
@@ -271,6 +326,24 @@
                     <button class="btn btn-green" onclick="verifyOTPAndRegister()">Verify & Register</button>
                 </div>
             </div>
+
+            <!-- Forgot Password Pane -->
+            <div id="auth-forgot-pane" class="auth-pane">
+                <div id="forgot-step-1">
+                    <p style="font-size: 12px; color: #64748b; margin-bottom: 12px;">Apna registered Mobile Number ya Email enter karein taaki hum OTP bhej sakein.</p>
+                    <div class="form-group"><label>Registered Mobile Number</label><input type="text" id="forgot-mobile" placeholder="Enter Mobile Number" maxlength="10"></div>
+                    <div class="form-group"><label>Registered Email Address</label><input type="email" id="forgot-email" placeholder="Enter Registered Email"></div>
+                    <button class="btn btn-yellow" onclick="sendForgotOTP()">Send Reset OTP</button>
+                    <button class="btn" style="background:#64748b; margin-top:8px;" onclick="switchAuthTab('login')">Back to Login</button>
+                </div>
+                <div id="forgot-step-2" style="display: none;">
+                    <p style="font-size: 12px; margin-bottom: 12px; color: #059669; font-weight: bold; text-align: center;">✔ Reset OTP sent to your email!</p>
+                    <div class="form-group"><label>Enter 6-Digit OTP</label><input type="text" id="forgot-otp-input" placeholder="Enter 6-digit OTP" maxlength="6"></div>
+                    <div class="form-group"><label>New Password</label><input type="password" id="forgot-new-password" placeholder="Enter New Password"></div>
+                    <button class="btn btn-green" onclick="verifyForgotOTPAndReset()">Reset Password</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -282,6 +355,8 @@
         const STUDENTS_API_URL = "https://script.google.com/macros/s/AKfycbyLSVobp5cfG3-0vpVA-1dOF8Wt42t2ew46iPzGbTzV9qtXzKZu8vJGY6XDRZkXYPBh/exec";
 
         let generatedOTP = "";
+        let forgotOTP = "";
+        let forgotTargetMobile = "";
         let currentUser = JSON.parse(localStorage.getItem('aaa_current_user')) || null;
         let globalCoursesData = [];
         let globalClassesData = [];
@@ -337,13 +412,29 @@
         function switchAuthTab(tab) {
             document.querySelectorAll('.auth-tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.auth-pane').forEach(pane => pane.classList.remove('active'));
+            
             if (tab === 'login') {
                 document.getElementById('tab-login-btn').classList.add('active');
                 document.getElementById('auth-login-pane').classList.add('active');
-            } else {
+                document.getElementById('auth-tabs-container').style.display = 'flex';
+            } else if (tab === 'signup') {
                 document.getElementById('tab-signup-btn').classList.add('active');
                 document.getElementById('auth-signup-pane').classList.add('active');
+                document.getElementById('auth-tabs-container').style.display = 'flex';
+            } else if (tab === 'forgot') {
+                document.getElementById('auth-tabs-container').style.display = 'none';
+                document.getElementById('auth-forgot-pane').classList.add('active');
             }
+        }
+
+        function openInfoModal(title, text) {
+            document.getElementById('info-modal-title').innerText = title;
+            document.getElementById('info-modal-body').innerHTML = `<p>${text}</p><p style="margin-top:12px; font-weight:bold; color:var(--primary-blue);">Helpline: 9694750598</p>`;
+            document.getElementById('info-modal').style.display = 'flex';
+        }
+
+        function closeInfoModal() {
+            document.getElementById('info-modal').style.display = 'none';
         }
 
         function isCourseFree(priceStr) {
@@ -374,7 +465,7 @@
                         let courseDesc = c.desc || c.Description || "";
                         let coursePrice = c.price ? c.price : "Free";
                         let isFree = isCourseFree(coursePrice);
-                        let payLink = c.paylink || `https://wa.me/917357040303?text=Sir%20I%20want%20to%20buy%20` + encodeURIComponent(courseTitle);
+                        let payLink = c.paylink || `https://wa.me/919694750598?text=Sir%20I%20want%20to%20buy%20` + encodeURIComponent(courseTitle);
                         let unlocked = isCoursePurchased(courseId);
 
                         htmlContent += `
@@ -419,25 +510,17 @@
         }
 
         function unlockCourseWithReferrals(courseId) {
-            if (!currentUser) {
-                alert("Pehle login karein!");
-                return;
-            }
+            if (!currentUser) { alert("Pehle login karein!"); return; }
 
             let currentReferCount = Number(currentUser.referCount) || 0;
 
             if (currentReferCount < 3) {
-                alert(`Abhi aapne ${currentReferCount} doston ko refer kiya hai. Course free unlock karne ke liye kam se kam 3 doston ko refer karna zaroori hai! Kripya WhatsApp par link share karein.`);
+                alert(`Abhi aapne ${currentReferCount} doston ko refer kiya hai. Course free unlock karne ke liye kam se kam 3 doston ko refer karna zaroori hai! Helpline: 9694750598`);
                 return;
             }
 
             if (confirm("Aapke 3 referrals poore ho chuke hain! Kya aap is course ko bilkul free mein unlock karna chahte hain?")) {
-                let unlockData = {
-                    action: "unlock_course",
-                    mobile: currentUser.mobile,
-                    courseId: courseId
-                };
-
+                let unlockData = { action: "unlock_course", mobile: currentUser.mobile, courseId: courseId };
                 alert("Course unlock kiya ja raha hai...");
 
                 fetch(STUDENTS_API_URL, {
@@ -456,15 +539,12 @@
                         alert(response.message || "Unlock karne mein samasya aayi.");
                     }
                 })
-                .catch(err => {
-                    console.error("Error:", err);
-                    alert("Server Error! Dobara koshish karein.");
-                });
+                .catch(err => { alert("Server Error! Dobara koshish karein."); });
             }
         }
 
         function buyOrRequestCourse(title, price, payLink) {
-            if (confirm(`Aap "${title}" course (${price}) khareedna chahte hain. WhatsApp par payment ka screenshot bhejein.`)) {
+            if (confirm(`Aap "${title}" course (${price}) khareedna chahte hain. WhatsApp par payment ka screenshot bhejein (Helpline: 9694750598).`)) {
                 window.open(payLink, '_blank');
             }
         }
@@ -562,17 +642,10 @@
             let mobile = document.getElementById('signup-mobile').value.trim();
             let email = document.getElementById('signup-email').value.trim();
 
-            if (!name || !mobile || !email) {
-                alert("Kripya sabhi fields (Name, Mobile, Email) bharein!");
-                return;
-            }
-            if (mobile.length !== 10) {
-                alert("Kripya 10 anko ka sahi mobile number dalein.");
-                return;
-            }
+            if (!name || !mobile || !email) { alert("Kripya sabhi fields (Name, Mobile, Email) bharein!"); return; }
+            if (mobile.length !== 10) { alert("Kripya 10 anko ka sahi mobile number dalein."); return; }
 
             generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-            
             let templateParams = { to_email: email, to_name: name, otp_code: generatedOTP };
             alert("OTP bheja ja raha hai, kripya intezar karein...");
 
@@ -614,6 +687,58 @@
                     location.reload();
                 } else {
                     alert(response.message || "Error!");
+                }
+            })
+            .catch(err => { alert("Server Error!"); });
+        }
+
+        // Forgot Password Logic with Email OTP
+        function sendForgotOTP() {
+            forgotTargetMobile = document.getElementById('forgot-mobile').value.trim();
+            let email = document.getElementById('forgot-email').value.trim();
+
+            if (!forgotTargetMobile || !email) {
+                alert("Kripya apna mobile number aur registered email dono enter karein.");
+                return;
+            }
+
+            forgotOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            let templateParams = { to_email: email, to_name: "Student", otp_code: forgotOTP };
+            
+            alert("Password Reset OTP bheja ja raha hai...");
+
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+                .then(() => {
+                    document.getElementById('forgot-step-1').style.display = 'none';
+                    document.getElementById('forgot-step-2').style.display = 'block';
+                })
+                .catch(err => { alert("OTP bhejne me nakamyab. Email check karein."); });
+        }
+
+        function verifyForgotOTPAndReset() {
+            let enteredOTP = document.getElementById('forgot-otp-input').value.trim();
+            let newPassword = document.getElementById('forgot-new-password').value.trim();
+
+            if (enteredOTP !== forgotOTP) { alert("Galat OTP!"); return; }
+            if (!newPassword) { alert("Naya password enter karein."); return; }
+
+            let resetData = { action: "reset_password", mobile: forgotTargetMobile, newPassword: newPassword };
+            alert("Password update ho raha hai...");
+
+            fetch(STUDENTS_API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(resetData)
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.status === "success") {
+                    alert("Password safal-purvak badal diya gaya hai! Ab aap naye password se login kar sakte hain.");
+                    switchAuthTab('login');
+                    document.getElementById('forgot-step-1').style.display = 'block';
+                    document.getElementById('forgot-step-2').style.display = 'none';
+                } else {
+                    alert(response.message || "Password update karne me samasya aayi.");
                 }
             })
             .catch(err => { alert("Server Error!"); });
