@@ -233,6 +233,14 @@
                 <div class="grid" id="my-courses-grid"><p style="text-align:center; grid-column: 1/-1;">No courses enrolled yet.</p></div>
             </div>
 
+            <!-- Current Affairs Section Added Here -->
+            <div id="section-currentaffairs" class="content-section">
+                <div class="section-title">📰 Daily Current Affairs & Updates</div>
+                <div class="grid" id="current-affairs-grid">
+                    <p style="text-align:center; grid-column: 1/-1;">Loading current affairs...</p>
+                </div>
+            </div>
+
             <div id="section-profile" class="content-section">
                 <div class="card" style="margin-bottom: 15px;">
                     <h3 style="margin-bottom: 10px; color: var(--primary-blue);">👤 Student Profile</h3>
@@ -264,6 +272,7 @@
                     <a href="#" onclick="switchTab('home'); return false;">Home Dashboard</a>
                     <a href="#" onclick="switchTab('courses'); return false;">Explore Courses</a>
                     <a href="#" onclick="switchTab('mycourses'); return false;">My Batches</a>
+                    <a href="#" onclick="switchTab('currentaffairs'); return false;">Current Affairs</a>
                     <a href="https://wa.me/919694750598" target="_blank">Contact Support</a>
                 </div>
                 <div class="footer-col">
@@ -284,6 +293,7 @@
         <div class="bottom-nav-item" onclick="switchTab('home')"><span>🏠</span>Home</div>
         <div class="bottom-nav-item" onclick="switchTab('courses')"><span>📚</span>Courses</div>
         <div class="bottom-nav-item" onclick="switchTab('mycourses')"><span>🎓</span>My Batches</div>
+        <div class="bottom-nav-item" onclick="switchTab('currentaffairs')"><span>📰</span>Current Affairs</div>
         <div class="bottom-nav-item" onclick="switchTab('profile')"><span>👤</span>Profile</div>
     </div>
 
@@ -353,6 +363,7 @@
         const COURSES_API_URL = "https://script.google.com/macros/s/AKfycbx8lMS_KZgcfwsbpHwj0TiV8eRIGU0fx0gu6pGBH_ZB0cMchhe2qstWTuJzMurZsSw2/exec";
         const CLASSES_API_URL = "https://script.google.com/macros/s/AKfycbwpx35EmzcAS8X1Y8eABouWak4XCGuuCXjtrCQ0y55x045wUHXfLqULaHiTFPEFPvZi1g/exec";
         const STUDENTS_API_URL = "https://script.google.com/macros/s/AKfycbyLSVobp5cfG3-0vpVA-1dOF8Wt42t2ew46iPzGbTzV9qtXzKZu8vJGY6XDRZkXYPBh/exec";
+        const CURRENT_AFFAIRS_API_URL = "https://script.google.com/macros/s/AKfycbzrnwlWEFx_qrLz0XedKL6w9z8XZg9UwFsf3E8IuvuN0iotNFch7e7jpZ1EtzamTQFeiA/exec";
 
         let generatedOTP = "";
         let forgotOTP = "";
@@ -389,6 +400,7 @@
         window.onload = function() {
             checkLoginState();
             loadCoursesFromSheet();
+            loadCurrentAffairs();
             updateProfileView();
         };
 
@@ -507,6 +519,45 @@
                     myGrid.innerHTML = hasPurchasedAny ? myHtmlContent : "<p style='text-align:center; grid-column: 1/-1;'>No enrolled courses yet.</p>";
                 })
                 .catch(err => { grid.innerHTML = "<p style='color:red; text-align:center;'>Failed to load courses.</p>"; });
+        }
+
+        function loadCurrentAffairs() {
+            const grid = document.getElementById('current-affairs-grid');
+            if (!grid) return;
+
+            fetch(CURRENT_AFFAIRS_API_URL)
+                .then(res => res.json())
+                .then(data => {
+                    let caData = Array.isArray(data) ? data : (data.currentaffairs || data.data || []);
+                    if (caData.length === 0) {
+                        grid.innerHTML = "<p style='text-align:center; grid-column: 1/-1;'>Aaj ke liye koi current affairs uplabdh nahi hai.</p>";
+                        return;
+                    }
+
+                    let htmlContent = "";
+                    caData.reverse().forEach(item => {
+                        let date = item.date || item.Date || "Recent";
+                        let title = item.title || item.Title || "Update";
+                        let content = item.content || item.Content || "";
+                        let category = item.category || item.Category || "General";
+
+                        htmlContent += `
+                            <div class="card" style="border-left: 4px solid var(--primary-blue);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <span style="font-size: 10px; font-weight: bold; background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 4px;">${category}</span>
+                                    <span style="font-size: 11px; color: #64748b;">📅 ${date}</span>
+                                </div>
+                                <h3 style="font-size: 15px; margin-bottom: 6px; color: var(--primary-blue);">${title}</h3>
+                                <p style="font-size: 13px; line-height: 1.5; color: #334155; margin-bottom: 0;">${content}</p>
+                            </div>
+                        `;
+                    });
+
+                    grid.innerHTML = htmlContent;
+                })
+                .catch(err => {
+                    grid.innerHTML = "<p style='color:red; text-align:center; grid-column: 1/-1;'>Current affairs load karne me samasya aayi.</p>";
+                });
         }
 
         function unlockCourseWithReferrals(courseId) {
@@ -795,7 +846,7 @@
                     <b>Email:</b> ${currentUser.email || 'N/A'}
                 `;
                 let count = currentUser.referCount || 0;
-                document.getElementById('referral-count-display').innerText = `👥 Total Referrals: ${count} / 3`;
+                document.getElementById('referral-count-entry').innerText = `👥 Total Referrals: ${count} / 3`;
             }
         }
 
